@@ -34,6 +34,10 @@ function Set-MyGitCommit {
 function Set-MyGitCommitAll {
     git commit -am $args
 }
+function Set-MyGitCommitU {
+    git add .
+    git commit -m $args
+}
 function Set-MyGitCommitAmend {
     git commit --amend $args
 }
@@ -114,6 +118,7 @@ function Push-MyGit {
     'grm'     = 'Remove-MyGit'
     'c'       = 'Set-MyGitCommit'
     'ca'      = 'Set-MyGitCommitAll'
+    'cu'      = 'Set-MyGitCommitU'
     'cam'     = 'Set-MyGitCommitAmend'
     'camn'    = 'Set-MyGitCommitAmendNoEdit'
     'rem'     = 'Reset-MyGitMixed'
