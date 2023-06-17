@@ -116,9 +116,6 @@ function Install-MyESLint {
 
         npm i -D $neededEslintPackages
         [PSCustomObject]$eslintrc | Export-MyJSON -LiteralPath $eslintrcPath
-        Add-MyNpmScript -NameToScript @{
-            'lint' = 'eslint .'
-        }
 
         git add '.\.eslintrc.json' '.\package-lock.json' '.\package.json'
         git commit -m 'Add ESLint'
