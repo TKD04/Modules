@@ -93,7 +93,8 @@ function Install-MyESLint {
             }
             $eslintrc.extends += 'plugin:@typescript-eslint/recommended-requiring-type-checking'
 
-            <# Create tsconfig.eslint.json #>
+            <# Create tsconfig.eslint.json to avoid the error below. #>
+            # ref. https://typescript-eslint.io/linting/troubleshooting/#i-get-errors-telling-me-eslint-was-configured-to-run--however-that-tsconfig-does-not--none-of-those-tsconfigs-include-this-file
             [string]$tsconfigEslintPath = '.\tsconfig.eslint.json'
             [hashtable]$tsconfigEslint = [ordered]@{
                 extends         = './tsconfig.json'
