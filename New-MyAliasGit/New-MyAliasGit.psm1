@@ -87,7 +87,7 @@ function Set-MyGitDrop {
     git stash drop $args
 }
 function Set-MyGitClean {
-    git clean -x -f
+    git clean -df
 }
 function Get-MyGitStatus {
     git status -sb $args
