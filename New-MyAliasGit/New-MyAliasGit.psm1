@@ -89,6 +89,9 @@ function Set-MyGitDrop {
 function Set-MyGitClean {
     git clean -df
 }
+function Set-MyGitCleanX {
+    git clean -xdf
+}
 function Get-MyGitStatus {
     git status -sb $args
 }
@@ -136,6 +139,7 @@ function Push-MyGit {
     'pop'     = 'Pop-MyGit'
     'drop'    = 'Set-MyGitDrop'
     'cl'      = 'Set-MyGitClean'
+    'clx'     = 'Set-MyGitCleanX'
     'st'      = 'Get-MyGitStatus'
     'dif'     = 'Get-MyGitDiff'
     'difs'    = 'Get-MyGitDiffStaged'
