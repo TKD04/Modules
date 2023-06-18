@@ -3,10 +3,10 @@
 Adds ESLint and its settings to the current directory.
 
 .PARAMETER UseBrowser
-Whether to support browser.
+Whether to support the global variables in browser.
 
 .PARAMETER UseNode
-Whether to support Node.
+Whether to support the global varialbes in Node.
 
 .PARAMETER UseTypeScript
 Whether to add the rules for TypeScript.
