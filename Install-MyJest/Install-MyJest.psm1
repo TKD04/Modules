@@ -7,7 +7,8 @@ function Install-MyJest {
     [OutputType([void])]
     param()
     process {
-        npm i -D jest ts-jest @types/jest
+        npm i -D jest ts-jest
+        npm i @types/jest
         npx ts-jest config:init
         Add-MyNpmScript -NameToScript @{
             'test' = 'jest'
