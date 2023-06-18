@@ -24,6 +24,7 @@ function Install-MyEnvForNode {
         }
         Join-Path -Path $gitignoreDirPath -ChildPath 'Node.gitignore' |
         Copy-Item -Destination '.\.gitignore'
+        npm i -D ts-node nodemon
         git add '.\.eslintrc.json' '.\.gitignore' '.\package.json'
         git commit -m 'Add environment for Node'
     }

@@ -72,7 +72,6 @@ function Install-MyTypeScript {
                 'es2023'
             )
 
-            npm i -D ts-node nodemon
             npm i @types/node
         }
         if ($UseNoEmit) {
