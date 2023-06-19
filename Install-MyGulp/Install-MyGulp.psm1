@@ -15,7 +15,7 @@ function Install-MyGulp {
 
         if ($UseTypeScript) {
             $gulpFilePath = $gulpFilePath -replace '.js$', '.ts'
-            npm i @types/gulp
+            npm i -D @types/gulp
         }
 
         npm i -D gulp gulp-cli

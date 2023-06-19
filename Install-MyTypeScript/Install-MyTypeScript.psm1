@@ -72,7 +72,7 @@ function Install-MyTypeScript {
                 'es2023'
             )
 
-            npm i @types/node
+            npm i -D @types/node
         }
         if ($UseNoEmit) {
             $tsConfig.compilerOptions.Add('noEmit', $true)
