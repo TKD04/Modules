@@ -22,6 +22,7 @@ function Install-MyGulp {
         New-Item -Path '.\' -Name $gulpFilePath -ItemType 'File'
 
         git add '.\package-lock.json' '.\package.json' $gulpFilePath
+        git commit -m 'Add gulp'
     }
 }
 
