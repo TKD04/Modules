@@ -9,11 +9,11 @@ function Install-MyVSCodeSettingsForWeb {
     process {
         [PSCustomObject]$settings = [PSCustomObject]@{
             <# General #>
-            'files.autoGuessEncoding'                    = $true
             'editor.formatOnSave'                        = $true
-            'files.trimTrailingWhitespace'               = $true
+            'files.autoGuessEncoding'                    = $true
             'files.insertFinalNewline'                   = $true
             'files.trimFinalNewlines'                    = $true
+            'files.trimTrailingWhitespace'               = $true
             <# Web #>
             'editor.defaultFormatter'                    = 'esbenp.prettier-vscode'
             'editor.tabSize'                             = 2

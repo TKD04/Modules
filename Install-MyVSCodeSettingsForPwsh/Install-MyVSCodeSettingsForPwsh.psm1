@@ -9,11 +9,11 @@ function Install-MyVSCodeSetingsForPwsh {
     process {
         [PSCustomObject]$settings = [PSCustomObject]@{
             <# General #>
-            'files.autoGuessEncoding'                      = $true
             'editor.formatOnSave'                          = $true
-            'files.trimTrailingWhitespace'                 = $true
+            'files.autoGuessEncoding'                      = $true
             'files.insertFinalNewline'                     = $true
             'files.trimFinalNewlines'                      = $true
+            'files.trimTrailingWhitespace'                 = $true
             <# PowerShell #>
             'powershell.codeFormatting.autoCorrectAliases' = $true
             'powershell.codeFormatting.useCorrectCasing'   = $true
