@@ -18,7 +18,7 @@ function Export-MyJSON {
         [PSCustomObject]$CustomObject
     )
     process {
-        $CustomObject | ConvertTo-Json | Set-Content -LiteralPath $LiteralPath
+        ConvertTo-Json -InputObject $CustomObject | Set-Content -LiteralPath $LiteralPath
     }
 }
 
