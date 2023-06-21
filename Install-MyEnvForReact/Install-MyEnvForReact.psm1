@@ -13,7 +13,6 @@ function Install-MyEnvForReact {
         [PSCustomObject]$package = Import-MyJSON -LiteralPath $packagePath
         $package.PSObject.Properties.Remove('eslintConfig')
         Export-MyJSON -LiteralPath $packagePath -CustomObject $package
-
         Install-MyESLint -UseBrower -UseTypeScript -UseReact -UseJest
 
         git add .

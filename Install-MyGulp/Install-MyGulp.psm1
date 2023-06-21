@@ -17,7 +17,6 @@ function Install-MyGulp {
             $gulpFilePath = $gulpFilePath -replace '.js$', '.ts'
             npm i -D @types/gulp
         }
-
         npm i -D gulp gulp-cli
         New-Item -Path '.\' -Name $gulpFilePath -ItemType 'File'
 

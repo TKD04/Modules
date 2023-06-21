@@ -114,7 +114,6 @@ function Install-MyESLint {
             $neededEslintPackages += 'eslint-plugin-jest'
         }
         $eslintrc.extends += 'prettier'
-
         npm i -D $neededEslintPackages
         [PSCustomObject]$eslintrc | Export-MyJSON -LiteralPath $eslintrcPath
 

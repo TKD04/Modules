@@ -80,7 +80,6 @@ function Install-MyTypeScript {
         if ($UseJSX) {
             $tsConfig.compilerOptions.Add('jsx', 'react-jsx')
         }
-
         npm i -D typescript
         $tsConfig | Export-MyJSON -LiteralPath '.\tsconfig.json'
 
