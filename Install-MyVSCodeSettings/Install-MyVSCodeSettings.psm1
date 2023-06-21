@@ -20,11 +20,11 @@ function Install-MyVSCodeSettings {
         }
         Push-Location -LiteralPath '.\.vscode'
         if ($null -ne $Settings) {
-            $Settings | Export-MyJSON -LiteralPath '.\settings.json'
+            Export-MyJSON -LiteralPath '.\settings.json' -CustomObject $Settings
             git add '.\settings.json'
         }
         if ($null -ne $Extensions) {
-            $Extensions | Export-MyJSON -LiteralPath '.\extensions.json'
+            Export-MyJSON -LiteralPath '.\extensions.json' -CustomObject $Extensions
             git add '.\extensions.json'
         }
         Pop-Location

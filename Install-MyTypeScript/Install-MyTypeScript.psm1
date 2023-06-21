@@ -81,7 +81,7 @@ function Install-MyTypeScript {
             $tsConfig.compilerOptions.Add('jsx', 'react-jsx')
         }
         npm i -D typescript
-        $tsConfig | Export-MyJSON -LiteralPath '.\tsconfig.json'
+        Export-MyJSON -LiteralPath '.\tsconfig.json' -CustomObject $tsConfig
 
         git add '.\package-lock.json' '.\package.json' '.\tsconfig.json'
         git commit -m 'Add TypeScript'

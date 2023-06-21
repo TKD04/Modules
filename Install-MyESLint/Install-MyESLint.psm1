@@ -103,7 +103,7 @@ function Install-MyESLint {
                     noEmit = $true
                 }
             }
-            $tsconfigEslint | Export-MyJSON -LiteralPath $tsconfigEslintPath
+            Export-MyJSON -LiteralPath $tsconfigEslintPath -CustomObject [PSCustomObject]$tsconfigEslint
             git add $tsconfigEslintPath
         }
         if ($UseJest) {
@@ -115,7 +115,7 @@ function Install-MyESLint {
         }
         $eslintrc.extends += 'prettier'
         npm i -D $neededEslintPackages
-        [PSCustomObject]$eslintrc | Export-MyJSON -LiteralPath $eslintrcPath
+        Export-MyJSON -LiteralPath $eslintrcPath -CustomObject [PSCustomObject]$eslintrc
 
         git add '.\.eslintrc.json' '.\package-lock.json' '.\package.json'
         git commit -m 'Add ESLint'

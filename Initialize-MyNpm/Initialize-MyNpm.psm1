@@ -10,9 +10,9 @@ function Initialize-MyNpm {
     process {
         npm init -y
         <# Remove `test` in npm scripts which is generated automatically #>
-        [hashtable]$package = '.\package.json' | Import-MyJSON -AsHashTable
+        [hashtable]$package = Import-MyJSON -LiteralPath '.\package.json' -AsHashTable
         $package.scripts.Remove('test')
-        $package | Export-MyJSON -LiteralPath '.\package.json'
+        Export-MyJSON -LiteralPath '.\package.json' -CustomObject [PSCustomObject]$package
         Add-Content -LiteralPath '.\.gitignore' -Value @(
             '/node_modules/'
             '/dist/'
