@@ -13,19 +13,18 @@ function Copy-MyFolderStructure {
         [string]$LiteralPath
     )
     process {
-        [string]$absoluteSrcPath = Resolve-Path -LiteralPath $LiteralPath
-        [string]$dirName = Split-Path -Path $absoluteSrcPath -Leaf
+        [string]$dirName = Resolve-Path -LiteralPath $LiteralPath | Split-Path -Path $absoluteSrcPath -Leaf
         [string]$destPath = '.\copied-folder-structure_{0}' -f $dirName
 
-        if (!(Test-MyStrictPath -LiteralPath $absoluteSrcPath)) {
-            throw '$absoluteSrcwas not found.'
+        if (!(Test-MyStrictPath -LiteralPath $LiteralPath)) {
+            throw '$LiteralPath not found.'
         }
         if (!(Test-MyStrictPath -LiteralPath $destPath)) {
             New-Item -Path '.\' -Name $destPath -ItemType 'Directory'
         }
 
         # ref. https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy#parameter
-        xcopy.exe /E /T $absoluteSrcPath $destPath
+        xcopy.exe /E /T $LiteralPath $destPath
     }
 }
 
