@@ -10,6 +10,7 @@ function Initialize-MyNpm {
     process {
         npm init -y
 
+        <# Remove `test` in npm scripts which is generated automatically #>
         [hashtable]$package = '.\package.json' | Import-MyJSON -AsHashTable
         $package.scripts.Remove('test')
         $package | Export-MyJSON -LiteralPath '.\package.json'
