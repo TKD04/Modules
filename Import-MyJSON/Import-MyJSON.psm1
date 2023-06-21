@@ -18,7 +18,7 @@ function Import-MyJSON {
     )
     process {
         if (!(Test-MyStrictPath -LiteralPath $LiteralPath)) {
-            throw "`$LiteralPath is an invalid path: [$LiteralPath]"
+            throw '$LiteralPath was not found.'
         }
 
         if ($AsHashTable) {

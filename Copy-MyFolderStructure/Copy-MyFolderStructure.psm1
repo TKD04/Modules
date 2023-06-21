@@ -18,7 +18,7 @@ function Copy-MyFolderStructure {
         [string]$destPath = '.\copied-folder-structure_{0}' -f $dirName
 
         if (!(Test-MyStrictPath -LiteralPath $absoluteSrcPath)) {
-            throw 'Cannot find path {0} because it does not exist.' -f $absoluteSrcPath
+            throw '$absoluteSrcwas not found.'
         }
         if (!(Test-MyStrictPath -LiteralPath $destPath)) {
             New-Item -Path '.\' -Name $destPath -ItemType 'Directory'
