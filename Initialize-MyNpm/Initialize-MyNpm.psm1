@@ -9,13 +9,16 @@ function Initialize-MyNpm {
     param()
     process {
         npm init -y
+
         [hashtable]$package = '.\package.json' | Import-MyJSON -AsHashTable
         $package.scripts.Remove('test')
         $package | Export-MyJSON -LiteralPath '.\package.json'
+
         Add-Content -LiteralPath '.\.gitignore' -Value @(
             '/node_modules/'
             '/dist/'
         )
+
         git add '.\.gitignore' '.\package.json'
         git commit -m 'Add npm'
     }
