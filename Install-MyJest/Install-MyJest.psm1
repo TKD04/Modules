@@ -7,11 +7,11 @@ function Install-MyJest {
     [OutputType([void])]
     param()
     process {
-        npm i -D jest ts-jest @types/jest
-        npx ts-jest config:init
         Add-MyNpmScript -NameToScript @{
             'test' = 'jest'
         }
+        npm i -D jest ts-jest @types/jest
+        npx ts-jest config:init
 
         git add '.\jest.config.js' '.\package-lock.json' '.\package.json'
         git commit -m 'Add Jest'

@@ -27,9 +27,9 @@ function Install-MyVSCodeSettings {
             $Extensions | Export-MyJSON -LiteralPath '.\extensions.json'
             git add '.\extensions.json'
         }
+        Pop-Location
 
         git commit -m 'Add .vscode'
-        Pop-Location
     }
 }
 
