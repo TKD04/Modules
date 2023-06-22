@@ -4,7 +4,6 @@ Adds gulp and its settings to the current directory.
 
 .PARAMETER UseTypeScript
 Whether to write gulpfile using TypeScript.
-
 #>
 function Install-MyGulp {
     param (

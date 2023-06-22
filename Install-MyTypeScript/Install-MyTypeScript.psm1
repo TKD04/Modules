@@ -74,7 +74,6 @@ function Install-MyTypeScript {
             $tsConfig.compilerOptions.lib = @(
                 'es2023'
             )
-
             npm i -D @types/node
         }
         if ($UseNoEmit) {
