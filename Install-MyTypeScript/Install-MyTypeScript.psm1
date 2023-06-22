@@ -49,7 +49,10 @@ function Install-MyTypeScript {
                 'esModuleInterop'                    = $true
                 'forceConsistentCasingInFileNames'   = $true
                 'isolatedModules'                    = $true
-                'verbatimModuleSyntax'               = $true
+                # Use ESLint rules for `verbatimModuleSyntax`, as it still has some compatibility issues.
+                # ref. https://zenn.dev/teppeis/articles/2023-04-typescript-5_0-verbatim-module-syntax#verbatimmodulesyntax%E3%81%A8-cjs-%E3%81%AE%E7%9B%B8%E6%80%A7%E3%81%8C%E6%82%AA%E3%81%84
+                # ref. https://johnnyreilly.com/typescript-5-importsnotusedasvalues-error-eslint-consistent-type-imports
+                # 'verbatimModuleSyntax'               = $true
                 <# Language and Environment #>
                 'lib'                                = @(
                     'esnext'

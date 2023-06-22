@@ -92,7 +92,15 @@ function Install-MyESLint {
                 $eslintrc.extends += 'airbnb-typescript/base'
             }
             $eslintrc.extends += 'plugin:@typescript-eslint/recommended-requiring-type-checking'
-
+            # Use ESLint rules instead of `verbatimModuleSyntax`, as it still has some compatibility issues.
+            # ref. https://zenn.dev/teppeis/articles/2023-04-typescript-5_0-verbatim-module-syntax#verbatimmodulesyntax%E3%81%A8-cjs-%E3%81%AE%E7%9B%B8%E6%80%A7%E3%81%8C%E6%82%AA%E3%81%84
+            # ref. https://johnnyreilly.com/typescript-5-importsnotusedasvalues-error-eslint-consistent-type-imports
+            $eslintrc.Add('rules', [ordered]@{
+                    '@typescript-eslint/consistent-type-imports'     = 'error'
+                    '@typescript-eslint/no-import-type-side-effects' = 'error'
+                    'import/consistent-type-specifier-style'         = 'prefer-top-level'
+                }
+            )
             <# Create tsconfig.eslint.json to avoid the error below. #>
             # ref. https://typescript-eslint.io/linting/troubleshooting/#i-get-errors-telling-me-eslint-was-configured-to-run--however-that-tsconfig-does-not--none-of-those-tsconfigs-include-this-file
             [string]$tsconfigEslintPath = '.\tsconfig.eslint.json'
