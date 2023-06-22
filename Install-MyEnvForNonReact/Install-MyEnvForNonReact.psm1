@@ -15,9 +15,6 @@ function Install-MyEnvForNonReact {
         Install-MyJest
         Install-MyVSCodeSettingsForWeb
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
-
-        git add '.\.eslintrc.json'
-        git commit -m 'Add environment for non-React'
     }
 }
 
