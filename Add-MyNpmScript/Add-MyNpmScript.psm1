@@ -25,7 +25,7 @@ function Add-MyNpmScript {
         $NameToScript.GetEnumerator() | ForEach-Object {
             $package.scripts.Add($_.Key, $_.Value)
         }
-        Export-MyJSON -LiteralPath $packagePath -CustomObject [PSCustomObject]$package
+        Export-MyJSON -LiteralPath $packagePath -CustomObject $package
     }
 }
 
