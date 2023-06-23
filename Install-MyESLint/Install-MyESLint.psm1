@@ -38,7 +38,6 @@ function Install-MyESLint {
                 ecmaVersion = 'latest'
                 sourceType  = 'module'
             }
-            plugins        = @()
             extends        = @()
             ignorePatterns = @('/dist/')
         }
@@ -84,7 +83,7 @@ function Install-MyESLint {
             $eslintrc.Add('parser', '@typescript-eslint/parser')
             $eslintrc.parserOptions.Add('project', './tsconfig.eslint.json')
             $eslintrc.parserOptions.Add('tsconfigRootDir', './')
-            $eslintrc.plugins += '@typescript-eslint'
+            $eslintrc.Add('plugins', @('@typescript-eslint'))
             if ($UseReact) {
                 $eslintrc.extends += 'airbnb-typescript'
             }
