@@ -133,6 +133,9 @@ function Install-MyESLint {
         $eslintrc.extends += 'prettier'
         npm i -D $neededEslintPackages
         Export-MyJSON -LiteralPath $eslintrcPath -CustomObject $eslintrc
+        Add-MyNpmScript -NameToScript @{
+            'lint' = 'eslint . --fix'
+        }
 
         git add '.\.eslintrc.json' '.\package-lock.json' '.\package.json'
         git commit -m 'Add ESLint'
