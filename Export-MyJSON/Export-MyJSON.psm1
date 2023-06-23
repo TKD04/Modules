@@ -15,10 +15,11 @@ function Export-MyJSON {
         [Parameter(Mandatory)]
         [string]$LiteralPath,
         [Parameter(Mandatory, ValueFromPipeline)]
-        [PSCustomObject]$CustomObject
+        [PSCustomObject]$CustomObject,
+        [int]$Depth = 4
     )
     process {
-        ConvertTo-Json -InputObject $CustomObject | Set-Content -LiteralPath $LiteralPath
+        ConvertTo-Json -InputObject $CustomObject -Depth $Depth | Set-Content -LiteralPath $LiteralPath
     }
 }
 
