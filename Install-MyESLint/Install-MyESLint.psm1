@@ -97,7 +97,10 @@ function Install-MyESLint {
             $eslintrc.Add('rules', [ordered]@{
                     '@typescript-eslint/consistent-type-imports'     = 'error'
                     '@typescript-eslint/no-import-type-side-effects' = 'error'
-                    'import/consistent-type-specifier-style'         = 'prefer-top-level'
+                    'import/consistent-type-specifier-style'         = @(
+                        'error'
+                        'prefer-top-level'
+                    )
                 }
             )
             <# Create tsconfig.eslint.json to avoid the error below. #>
