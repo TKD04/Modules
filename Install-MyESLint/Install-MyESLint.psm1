@@ -116,9 +116,19 @@ function Install-MyESLint {
         }
         if ($UseJest) {
             # ref. https://www.npmjs.com/package/eslint-plugin-jest
-            $eslintrc.env.Add('jest', $true)
-            $eslintrc.plugins += 'jest'
-            $eslintrc.extends += 'plugin:jest/all'
+            # ref. https://github.com/jest-community/eslint-plugin-jest#running-rules-only-on-test-related-files
+            [hashtable]$eslintOverridesJest = [ordered]@{
+                env     = @{
+                    jest = $true
+                }
+                plugins = @('jest')
+                extends = 'plugin:jest/all'
+                files   = @('*.test.js')
+            }
+            if ($UseTypeScript) {
+                $eslintOverridesJest.files = @('*.test.ts')
+            }
+            $eslintrc.Add('overrides', @($eslintOverridesJest))
             $neededEslintPackages += 'eslint-plugin-jest'
         }
         $eslintrc.extends += 'prettier'
