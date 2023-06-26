@@ -23,7 +23,7 @@ function Install-MyEnvForPython {
         [string]$currentDirName = (Get-Item -LiteralPath '.\').Name
         New-Item -Path '.\' -Name $currentDirName -ItemType 'Directory'
         New-Item -Path '.\' -Name 'tests' -ItemType 'Directory'
-        Get-ChildItem -LiteralPath '.\' -Directory -Exclude '.vscode' | ForEach-Object {
+        Get-ChildItem -LiteralPath '.\' -Directory -Exclude @('.venv', '.vscode') | ForEach-Object {
             New-Item -Path $_ -Name '__init__.py' -ItemType 'File'
         }
         New-Item -Path '.\' -Name 'README.md' -ItemType 'File'
