@@ -14,7 +14,7 @@ function Install-MyEnvForNode {
         Initialize-MyNpm
         Install-MyTypeScript -UseNode
         Install-MyESLint -UseTypeScript -UseNode -UseJest
-        Install-MyJest
+        Install-MyJest -UseTypeScript -UseNode
         Install-MyVSCodeSettingsForWeb
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
         Add-MyNpmScript -NameToScript @{

@@ -12,7 +12,7 @@ function Install-MyEnvForNonReact {
         Initialize-MyNpm
         Install-MyTypeScript
         Install-MyESLint -UseTypeScript -UseBrower -UseJest
-        Install-MyJest
+        Install-MyJest -UseTypeScript -UseBrowser
         Install-MyVSCodeSettingsForWeb
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
     }
