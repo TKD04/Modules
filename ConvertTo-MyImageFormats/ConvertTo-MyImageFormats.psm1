@@ -17,7 +17,7 @@ function ConvertTo-MyImageFormats {
     [OutputType([void])]
     param (
         [Parameter(Mandatory)]
-        [ValidateScript({ Test-Path -Path $_ -IsValid })]
+        [ValidateScript({ Test-Path -Path $_ }) ]
         [string]$Path,
         [Parameter(Mandatory)]
         [ValidateSet('png', 'jpg', 'jpeg', 'webp', 'avif')]
