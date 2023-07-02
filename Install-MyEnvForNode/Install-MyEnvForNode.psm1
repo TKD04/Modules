@@ -13,7 +13,7 @@ function Install-MyEnvForNode {
         Initialize-MyGit
         Initialize-MyNpm
         Install-MyTypeScript -UseNode
-        Install-MyESLint -UseNode -UseTypeScript -UseJest
+        Install-MyESLint -UseTypeScript -UseNode -UseJest
         Install-MyJest
         Install-MyVSCodeSettingsForWeb
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
