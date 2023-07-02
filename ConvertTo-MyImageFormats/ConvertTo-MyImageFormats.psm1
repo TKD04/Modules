@@ -8,6 +8,9 @@ Specifies the path to the source files. You can use wildcards.
 .PARAMETER Format
 Specifies the output format.
 
+.EXAMPLE
+ConvertTo-MyImageFormats -Path '.\src\*.jpg' -Format 'webp'
+
 .COMPONENT
 ImageMagick
 #>
