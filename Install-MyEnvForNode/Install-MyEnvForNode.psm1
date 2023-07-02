@@ -18,8 +18,7 @@ function Install-MyEnvForNode {
         Install-MyVSCodeSettingsForWeb
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
         Add-MyNpmScript -NameToScript @{
-            'dev'   = 'nodemon --watch "src/**/*.ts" --exec "ts-node" src/index.ts'
-            'build' = 'tsc -p .'
+            'dev' = 'nodemon --watch "src/**/*.ts" --exec "ts-node" src/index.ts'
         }
         Join-Path -Path $gitignoreDirPath -ChildPath 'Node.gitignore' |
         Copy-Item -Destination '.\.gitignore'
