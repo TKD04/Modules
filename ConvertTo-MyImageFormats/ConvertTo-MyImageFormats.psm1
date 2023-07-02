@@ -2,11 +2,8 @@
 .SYNOPSIS
 Converts image formats to the specified image formats using ImageMagick.
 
-.PARAMETER SrcPath
+.PARAMETER Path
 Specifies the path to the source files. You can use wildcards.
-
-.PARAMETER DestDirPath
-Specifies the path to the target directory.
 
 .PARAMETER Format
 Specifies the output format.
@@ -21,25 +18,21 @@ function ConvertTo-MyImageFormats {
     param (
         [Parameter(Mandatory)]
         [ValidateScript({ Test-Path -Path $_ -IsValid })]
-        [string]$SrcPath,
-        [Parameter(Mandatory)]
-        [ValidateScript({ Test-Path -LiteralPath $_ -IsValid })]
-        [string]$DestDirPath,
+        [string]$Path,
         [Parameter(Mandatory)]
         [ValidateSet('png', 'jpg', 'jpeg', 'webp', 'avif')]
         [string]$Format
     )
     process {
+        [string]$destDir = '.\new-image-formats'
         if (!(Test-MyCommandExists -Command 'magick') ) {
             throw 'ImageMagick was not found.'
         }
-
         if (!(Test-MyStrictPath -LiteralPath $DestDirPath)) {
-            [string]$parentDirPath = Split-Path $DestDirPath -Parent
-            [string]$destDirName = Split-Path $DestDirPath -Leaf
-            New-Item -Path $parentDirPath -Name $destDirName -ItemType 'Directory'
+            New-Item -Path '.\' -Name $destDir -ItemType 'Directory'
         }
-        magick.exe mogrify -format $Format -path $DestDirPath $SrcPath
+
+        magick.exe mogrify -format $Format -path $destDir $Path
     }
 }
 
