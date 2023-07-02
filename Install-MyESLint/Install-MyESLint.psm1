@@ -51,7 +51,15 @@ function Install-MyESLint {
             $eslintrc.env.Add('browser', $true)
         }
         if ($UseNode) {
+            # Since we can't omit the extension on the import statements in ESM.
             $eslintrc.env.Add('node', $true)
+            $eslintrc.Add('rules', @{
+                    'import/extensions' = @(
+                        'error'
+                        'always'
+                    )
+                }
+            )
         }
         if ($UseReact) {
             # ref. https://www.npmjs.com/package/eslint-config-airbnb
