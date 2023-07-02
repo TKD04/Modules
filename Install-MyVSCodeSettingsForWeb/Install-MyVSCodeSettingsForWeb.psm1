@@ -23,10 +23,10 @@ function Install-MyVSCodeSettingsForWeb {
                 'lang' = 'ja'
             }
             <# TypeScript/JavaScript #>
-            'typescript.preferences.importModuleSpecifierEnding' = 'js'
-            'typescript.updateImportsOnFileMove.enabled'         = 'always'
             'javascript.preferences.importModuleSpecifierEnding' = 'js'
             'javascript.updateImportsOnFileMove.enabled'         = 'always'
+            'typescript.preferences.importModuleSpecifierEnding' = 'js'
+            'typescript.updateImportsOnFileMove.enabled'         = 'always'
             <# Markdown #>
             '[markdown]'                                         = @{
                 'files.trimTrailingWhitespace' = $false
