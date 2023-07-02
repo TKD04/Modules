@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Adds gulp and its settings to the current directory.
+Adds gulp to the current directory.
 #>
 function Install-MyGulp {
     param ()

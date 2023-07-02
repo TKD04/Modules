@@ -1,6 +1,6 @@
 ﻿<#
 .SYNOPSIS
-Converts images
+Converts image formats to the specified image formats using ImageMagick.
 
 .PARAMETER SrcPath
 Specifies the path to the source files. You can use wildcards.
