@@ -41,7 +41,7 @@ function Install-MyEnvForNode {
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
         if ($UseTypeScript) {
             Add-MyNpmScript -NameToScript @{
-                'watch' = 'nodemon --watch "src/**/*.ts" --exec "ts-node" src/index.ts'
+                'watch' = 'nodemon --watch src/**/*.ts --exec ts-node src/index.ts'
             }
             npm i -D ts-node nodemon
 
