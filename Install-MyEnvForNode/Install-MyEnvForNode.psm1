@@ -12,6 +12,9 @@ Whether to use Jest.
 
 .PARAMETER UseExpress
 Whether to use Express.
+
+.PARAMETER AddWatch
+Whether to add `watch` to npm scripts.
 #>
 function Install-MyEnvForNode {
     [CmdletBinding()]
@@ -20,7 +23,8 @@ function Install-MyEnvForNode {
     param(
         [switch]$UseTypeScript,
         [switch]$UseJest,
-        [switch]$UseExpress
+        [switch]$UseExpress,
+        [switch]$AddWatch
     )
     process {
         Initialize-MyGit
@@ -49,7 +53,7 @@ function Install-MyEnvForNode {
         }
         Install-MyVSCodeSettingsForWeb
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
-        if ($UseTypeScript) {
+        if ($AddWatch -and $UseTypeScript) {
             Install-MyTSNode
             Add-MyNpmScript -NameToScript @{
                 'watch' = 'nodemon --watch src/**/*.ts --exec ts-node src/app.ts'
@@ -58,10 +62,12 @@ function Install-MyEnvForNode {
 
             git add '.\package-lock.json'
         }
-        else {
+        elseif ($AddWatch -and !$UseTypeScript) {
             Add-MyNpmScript -NameToScript @{
                 'watch' = 'node --watch "./src"'
             }
+        }
+        if (!$UseTypeScript) {
             <# Add "type": "module" to package.json if TypeScript is not used. #>
             # Since "type": "module" in TypeScript causes `ERR_UNKNOWN_FILE_EXTENSION`.
             # ref. https://stackoverflow.com/questions/62096269/cant-run-my-node-js-typescript-project-typeerror-err-unknown-file-extension
