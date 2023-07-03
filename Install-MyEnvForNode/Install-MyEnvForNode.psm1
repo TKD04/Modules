@@ -51,13 +51,15 @@ function Install-MyEnvForNode {
             Add-MyNpmScript -NameToScript @{
                 'watch' = 'node --watch "./src"'
             }
+            <# Add "type": "module" to package.json if TypeScript is not used. #>
+            # Since "type": "module" in TypeScript causes `ERR_UNKNOWN_FILE_EXTENSION`.
+            # ref. https://stackoverflow.com/questions/62096269/cant-run-my-node-js-typescript-project-typeerror-err-unknown-file-extension
+            [hashtable]$package = Import-MyJSON -LiteralPath '.\package.json' -AsHashTable
+            $package.Add('type', 'module')
+            Export-MyJSON -LiteralPath '.\package.json' -CustomObject $package
         }
         Join-Path -Path $gitignoreDirPath -ChildPath 'Node.gitignore' |
         Copy-Item -Destination '.\.gitignore'
-        <# Add "type": "module" to package.json #>
-        [hashtable]$package = Import-MyJSON -LiteralPath '.\package.json' -AsHashTable
-        $package.Add('type', 'module')
-        Export-MyJSON -LiteralPath '.\package.json' -CustomObject $package
 
         git add '.\.gitignore' '.\package.json'
         git commit -m 'Add environment for Node'
