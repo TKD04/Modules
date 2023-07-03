@@ -12,7 +12,7 @@ function Install-MyExpress {
         [switch]$UseTypeScript
     )
     process {
-        npm i -D express
+        npm i express
         if ($UseTypeScript) {
             npm i -D @types/express
         }
