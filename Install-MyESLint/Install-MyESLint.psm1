@@ -40,6 +40,7 @@ function Install-MyESLint {
             }
             extends        = @()
             ignorePatterns = @('/dist/')
+            rules          = @{}
         }
         [string[]]$neededEslintPackages = @(
             'eslint'
@@ -53,12 +54,11 @@ function Install-MyESLint {
         if ($UseNode) {
             # Since we can't omit the extension on the import statements in ESM.
             $eslintrc.env.Add('node', $true)
-            $eslintrc.Add('rules', @{
-                    'import/extensions' = @(
-                        'error'
-                        'always'
-                    )
-                }
+            $eslintrc.rules.Add(
+                'import/extensions', @(
+                    'error'
+                    'always'
+                )
             )
         }
         if ($UseReact) {
@@ -102,14 +102,12 @@ function Install-MyESLint {
             # Use ESLint rules instead of `verbatimModuleSyntax`, as it still has some compatibility issues.
             # ref. https://zenn.dev/teppeis/articles/2023-04-typescript-5_0-verbatim-module-syntax#verbatimmodulesyntax%E3%81%A8-cjs-%E3%81%AE%E7%9B%B8%E6%80%A7%E3%81%8C%E6%82%AA%E3%81%84
             # ref. https://johnnyreilly.com/typescript-5-importsnotusedasvalues-error-eslint-consistent-type-imports
-            $eslintrc.Add('rules', [ordered]@{
-                    '@typescript-eslint/consistent-type-imports'     = 'error'
-                    '@typescript-eslint/no-import-type-side-effects' = 'error'
-                    'import/consistent-type-specifier-style'         = @(
-                        'error'
-                        'prefer-top-level'
-                    )
-                }
+            $eslintrc.rules.Add('@typescript-eslint/consistent-type-imports', 'error')
+            $eslintrc.rules.Add('@typescript-eslint/no-import-type-side-effects', 'error')
+            $eslintrc.rules.Add('import/consistent-type-specifier-style', @(
+                    'error'
+                    'prefer-top-level'
+                )
             )
             <# Create tsconfig.eslint.json to avoid the error below. #>
             # ref. https://typescript-eslint.io/linting/troubleshooting/#i-get-errors-telling-me-eslint-was-configured-to-run--however-that-tsconfig-does-not--none-of-those-tsconfigs-include-this-file
