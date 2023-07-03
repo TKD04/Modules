@@ -9,6 +9,9 @@ Whether to support TypeScript.
 
 .PARAMETER UseJest
 Whether to use Jest.
+
+.PARAMETER UseExpress
+Whether to use Express.
 #>
 function Install-MyEnvForNode {
     [CmdletBinding()]
@@ -16,7 +19,8 @@ function Install-MyEnvForNode {
     [OutputType([void])]
     param(
         [switch]$UseTypeScript,
-        [switch]$UseJest
+        [switch]$UseJest,
+        [switch]$UseExpress
     )
     process {
         Initialize-MyGit
@@ -36,6 +40,12 @@ function Install-MyEnvForNode {
         }
         else {
             Install-MyESLint -UseNode
+        }
+        if ($UseTypeScript -and $UseExpress) {
+            Install-MyExpress -UseTypeScript
+        }
+        elseif (!$UseTypeScript -and $UseExpress) {
+            Install-MyExpress
         }
         Install-MyVSCodeSettingsForWeb
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
