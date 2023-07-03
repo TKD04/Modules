@@ -50,10 +50,11 @@ function Install-MyEnvForNode {
         Install-MyVSCodeSettingsForWeb
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
         if ($UseTypeScript) {
+            Install-MyTSNode
             Add-MyNpmScript -NameToScript @{
                 'watch' = 'nodemon --watch src/**/*.ts --exec ts-node src/app.ts'
             }
-            npm i -D ts-node nodemon
+            npm i -D nodemon
 
             git add '.\package-lock.json'
         }
