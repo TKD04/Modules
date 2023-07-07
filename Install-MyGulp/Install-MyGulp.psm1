@@ -3,6 +3,8 @@
 Adds gulp to the current directory.
 #>
 function Install-MyGulp {
+    [CmdletBinding()]
+    [OutputType([void])]
     param ()
     process {
         npm i -D gulp gulp-cli
