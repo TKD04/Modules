@@ -1,10 +1,13 @@
 ﻿<#
 .SYNOPSIS
 Renames the file extensions the new one.
+
 .PARAMETER OldExtension
 The file extension which you want to replace with the new one.
+
 .PARAMETER NewExtension
 The file extension which you want to replace the old one with
+
 .PARAMETER Recurse
 Whether to rename the matched files recursively.
 #>
