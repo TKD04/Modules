@@ -8,6 +8,9 @@ Whether to support the global variables in browser.
 .PARAMETER UseNode
 Whether to support the global varialbes in Node.
 
+.PARAMETER UseWebExtensions
+Whether to support the global variables in web extensions.
+
 .PARAMETER UseTypeScript
 Whether to add the rules for TypeScript.
 
@@ -23,6 +26,7 @@ function Install-MyESLint {
     param (
         [switch]$UseBrower,
         [switch]$UseNode,
+        [switch]$UseWebExtensions,
         [switch]$UseTypeScript,
         [switch]$UseReact,
         [switch]$UseJest
@@ -60,6 +64,9 @@ function Install-MyESLint {
                     'always'
                 )
             )
+        }
+        if ($UseWebExtensions) {
+            $eslintrc.env.Add('webextensions', $true)
         }
         if ($UseReact) {
             # ref. https://www.npmjs.com/package/eslint-config-airbnb
