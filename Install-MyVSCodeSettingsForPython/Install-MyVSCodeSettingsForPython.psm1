@@ -57,6 +57,7 @@ function Install-MyVSCodeSettingsForPython {
                 'ms-python.flake8'
                 'ms-python.black-formatter'
                 'ms-python.isort'
+                'ms-python.mypy-type-checker'
             )
         }
 
