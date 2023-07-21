@@ -9,26 +9,24 @@ function Install-MyVSCodeSettingsForWeb {
     process {
         [PSCustomObject]$settings = [PSCustomObject]@{
             <# General #>
-            'editor.formatOnSave'                                = $true
-            'files.autoGuessEncoding'                            = $true
-            'files.insertFinalNewline'                           = $true
-            'files.trimFinalNewlines'                            = $true
-            'files.trimTrailingWhitespace'                       = $true
+            'editor.formatOnSave'                        = $true
+            'files.autoGuessEncoding'                    = $true
+            'files.insertFinalNewline'                   = $true
+            'files.trimFinalNewlines'                    = $true
+            'files.trimTrailingWhitespace'               = $true
             <# Web #>
-            'editor.defaultFormatter'                            = 'esbenp.prettier-vscode'
-            'editor.tabSize'                                     = 2
+            'editor.defaultFormatter'                    = 'esbenp.prettier-vscode'
+            'editor.tabSize'                             = 2
             <# HTML #>
-            'editor.linkedEditing'                               = $true
-            'emmet.variables'                                    = @{
+            'editor.linkedEditing'                       = $true
+            'emmet.variables'                            = @{
                 'lang' = 'ja'
             }
             <# TypeScript/JavaScript #>
-            'javascript.preferences.importModuleSpecifierEnding' = 'js'
-            'javascript.updateImportsOnFileMove.enabled'         = 'always'
-            'typescript.preferences.importModuleSpecifierEnding' = 'js'
-            'typescript.updateImportsOnFileMove.enabled'         = 'always'
+            'javascript.updateImportsOnFileMove.enabled' = 'always'
+            'typescript.updateImportsOnFileMove.enabled' = 'always'
             <# Markdown #>
-            '[markdown]'                                         = @{
+            '[markdown]'                                 = @{
                 'files.trimTrailingWhitespace' = $false
             }
         }
