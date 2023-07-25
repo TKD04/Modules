@@ -56,6 +56,9 @@ function Install-MyJest {
                 Copy-Item -LiteralPath $SrcJestConfigPath -Destination $jestConfigPath
             }
         }
+        if ($UseBrowser) {
+            $neededPackages += 'jest-environment-jsdom'
+        }
         Add-MyNpmScript -NameToScript @{
             'test' = 'jest'
         }
