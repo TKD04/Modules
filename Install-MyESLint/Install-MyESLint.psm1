@@ -43,7 +43,10 @@ function Install-MyESLint {
                 sourceType  = 'module'
             }
             extends        = @()
-            ignorePatterns = @('/dist/')
+            ignorePatterns = @(
+                '/dist/'
+                '/webpack.config.js'
+            )
             rules          = @{}
         }
         [string[]]$neededEslintPackages = @(
