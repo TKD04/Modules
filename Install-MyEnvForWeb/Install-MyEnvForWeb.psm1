@@ -17,6 +17,7 @@ function Install-MyEnvForWeb {
         Install-MyJest -UseTypeScript -UseBrowser
         Install-MyPrettier
         Install-MyWebpack
+        Install-MyVSCodeSettingsForWeb
     }
 }
 
