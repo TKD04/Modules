@@ -2,7 +2,7 @@
 .SYNOPSIS
 Adds the VSCode settings for PowerShell to the current directory.
 #>
-function Install-MyVSCodeSetingsForPwsh {
+function Install-MyVSCodeSettingsForPwsh {
     [CmdletBinding()]
     [OutputType([void])]
     param ()
