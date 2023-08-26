@@ -19,7 +19,6 @@ function Install-MyWebpack {
             'sass-loader'
             'sass'
             'ts-loader'
-            'copy-webpack-plugin'
             'css-minimizer-webpack-plugin'
             'terser-webpack-plugin'
             'image-minimizer-webpack-plugin'

@@ -1,5 +1,4 @@
 const path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const PugPlugin = require("pug-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
@@ -68,14 +67,6 @@ module.exports = {
       js: {
         filename: "./js/[name].[contenthash:8].js",
       },
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: "./src/icons",
-          to: "./icons",
-        },
-      ],
     }),
   ],
   optimization: {
