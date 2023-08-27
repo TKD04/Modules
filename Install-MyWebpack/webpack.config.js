@@ -7,7 +7,9 @@ const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const srcDir = path.resolve(__dirname, "src");
 
 module.exports = {
-  entry: {},
+  entry: {
+    index: path.resolve(__dirname, "src/pug/index.pug"),
+  },
   output: {
     clean: true,
   },
