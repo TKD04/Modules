@@ -1,12 +1,21 @@
 <#
 .SYNOPSIS
 Adds the web develop environment to the current directory.
+
+.PARAMETER UseTypeScript
+Whether to support TypeScript.
+
+.PARAMETER UseReact
+Whether to support TypeScript.
 #>
 function Install-MyEnvForWeb {
     [CmdletBinding()]
     [Alias('ienvweb')]
     [OutputType([void])]
-    param ()
+    param (
+        [switch]$UseTypeScript,
+        [switch]$UseReact
+    )
     process {
         # TODO: Add UseTypeScript switch
         # TODO: Add UseReact switch
@@ -15,7 +24,6 @@ function Install-MyEnvForWeb {
         Install-MyTypeScript
         Install-MyESLint -UseTypeScript -UseJest -UseBrower
         Install-MyJest -UseTypeScript -UseBrowser
-        Install-MyPrettier
         Install-MyWebpack
         Install-MyVSCodeSettingsForWeb
     }
