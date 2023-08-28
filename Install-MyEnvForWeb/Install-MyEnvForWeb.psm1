@@ -20,11 +20,12 @@ function Install-MyEnvForWeb {
         if ($UseReact) {
             Install-MyTypeScript -UseJSX
             Install-MyReact -UseTypeScript
+            Install-MyESLint -UseTypeScript -UseJest -UseBrower -UseReact
         }
         else {
             Install-MyTypeScript
+            Install-MyESLint -UseTypeScript -UseJest -UseBrower
         }
-        Install-MyESLint -UseTypeScript -UseJest -UseBrower
         Install-MyJest -UseTypeScript -UseBrowser
         Install-MyWebpack
         Install-MyVSCodeSettingsForWeb
