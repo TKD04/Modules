@@ -12,7 +12,7 @@ function Install-MyReact {
         [switch]$UseTypeScript
     )
     process {
-        npm i -D react react-dom
+        npm i react react-dom
         if ($UseTypeScript) {
             npm i -D @types/react @types/react-dom
         }
