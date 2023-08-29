@@ -55,7 +55,7 @@ function Install-MyWebpack {
         }
         npm i -D $neededPackages
 
-        git add '.\package-lock.json' '.\package.json' '.\webpack.config.js' '.\src\pug\_layout.pug'
+        git add '.\package-lock.json' '.\package.json' '.\webpack.config.js' '.\src'
         git commit -m 'Add webpack'
     }
 }
