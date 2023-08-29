@@ -35,10 +35,10 @@ function Install-MyWebpack {
         New-Item -Path '.\src' -Name 'pug' -ItemType 'Directory'
         New-Item -Path '.\src' -Name 'scss' -ItemType 'Directory'
         New-Item -Path '.\src' -Name 'ts' -ItemType 'Directory'
-        [string]$srcLayoutPug = Join-Path -Path $PSScriptRoot -ChildPath '.\_layout.pug'
-        Copy-Item -LiteralPath $srcLayoutPug -Destination '.\src\pug\_layout.pug'
         [string]$srcWebpackConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\webpack.config.js'
+        [string]$srcLayoutPug = Join-Path -Path $PSScriptRoot -ChildPath '.\_layout.pug'
         Copy-Item -LiteralPath $srcWebpackConfigPath -Destination '.\webpack.config.js'
+        Copy-Item -LiteralPath $srcLayoutPug -Destination '.\src\pug\_layout.pug'
         <# Add "sideEffects: false" to package.json #>
         [hashtable]$package = Import-MyJSON -LiteralPath '.\package.json' -AsHashTable
         $package.Add('sideEffects', $false)
