@@ -100,6 +100,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   devServer: {
+    port: 3000,
     static: path.resolve(__dirname, "dist"),
     hot: true,
   },
