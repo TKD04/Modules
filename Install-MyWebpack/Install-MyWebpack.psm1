@@ -49,8 +49,7 @@ function Install-MyWebpack {
         Export-MyJSON -LiteralPath '.\package.json' -CustomObject $package
         <# Add npm scripts #>
         Add-MyNpmScript -NameToScript @{
-            'dev'   = 'webpack --mode development --devtool eval-cheap-module-source-map'
-            'watch' = 'webpack serve --open --mode development --devtool eval-cheap-module-source-map'
+            'dev'   = 'webpack serve --open --mode development --devtool eval-cheap-module-source-map'
             'build' = 'webpack --mode production'
         }
         npm i -D $neededPackages
