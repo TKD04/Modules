@@ -44,7 +44,7 @@ function Install-MyTypeScript {
                 'strict'                             = $true
                 <# Modules #>
                 'module'                             = 'esnext'
-                'moduleResolution'                   = 'node'
+                'moduleResolution'                   = 'node16'
                 'resolveJsonModule'                  = $true
                 # ref. https://stackoverflow.com/questions/35193111/compiling-typescript-using-gulp-is-creating-an-unwanted-destination-folder
                 'rootDir'                            = './src'
