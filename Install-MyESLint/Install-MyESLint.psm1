@@ -123,7 +123,7 @@ function Install-MyESLint {
             # ref. https://typescript-eslint.io/linting/troubleshooting/#i-get-errors-telling-me-eslint-was-configured-to-run--however-that-tsconfig-does-not--none-of-those-tsconfigs-include-this-file
             [string]$tsconfigEslintPath = '.\tsconfig.eslint.json'
             [hashtable]$tsconfigEslint = [ordered]@{
-                extends         = './tsconfig.json'
+                extends         = './tsconfig'
                 include         = @('./')
                 compilerOptions = @{
                     noEmit = $true
