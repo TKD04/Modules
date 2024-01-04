@@ -124,7 +124,10 @@ function Install-MyESLint {
             [string]$tsconfigEslintPath = '.\tsconfig.eslint.json'
             [hashtable]$tsconfigEslint = [ordered]@{
                 extends         = './tsconfig'
-                include         = @('./')
+                include         = @(
+                    'src',
+                    '*js'
+                )
                 compilerOptions = @{
                     noEmit = $true
                 }
