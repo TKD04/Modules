@@ -27,7 +27,7 @@ function Install-MyTypeScript {
         [hashtable]$tsConfig = [ordered]@{
             # ref. https://www.typescriptlang.org/tsconfig
             'include'         = @(
-                './src'
+                'src'
             )
             'compilerOptions' = [ordered]@{
                 <# Type Checking #>
