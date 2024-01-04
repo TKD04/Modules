@@ -45,7 +45,6 @@ function Install-MyESLint {
             extends        = @()
             ignorePatterns = @(
                 '/dist/'
-                '/webpack.config.js'
             )
             rules          = @{}
         }
