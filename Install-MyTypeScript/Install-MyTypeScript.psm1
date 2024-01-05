@@ -43,7 +43,7 @@ function Install-MyTypeScript {
                 'noUnusedParameters'                 = $true
                 'strict'                             = $true
                 <# Modules #>
-                'module'                             = 'esnext'
+                'module'                             = 'node16'
                 'moduleResolution'                   = 'node16'
                 'resolveJsonModule'                  = $true
                 # ref. https://stackoverflow.com/questions/35193111/compiling-typescript-using-gulp-is-creating-an-unwanted-destination-folder
