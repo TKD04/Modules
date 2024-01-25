@@ -31,9 +31,7 @@ function ConvertTo-MyImageFormats {
         if (!(Test-MyCommandExists -Command 'magick') ) {
             throw 'ImageMagick was not found.'
         }
-        if (!(Test-MyStrictPath -LiteralPath $DestDirPath)) {
-            New-Item -Path '.\' -Name $destDir -ItemType 'Directory'
-        }
+        New-Item -Path '.\' -Name $destDir -ItemType 'Directory'
 
         magick.exe mogrify -format $Format -path $destDir $Path
     }
