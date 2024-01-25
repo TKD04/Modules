@@ -18,7 +18,6 @@ function Install-MyEnvForWeb {
     )
     process {
         # TODO: Add UseTypeScript switch
-        # TODO: Add UseReact switch
         Initialize-MyGit
         Initialize-MyNpm
         if ($UseReact) {
