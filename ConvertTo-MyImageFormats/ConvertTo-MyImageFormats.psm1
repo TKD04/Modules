@@ -27,7 +27,7 @@ function ConvertTo-MyImageFormats {
         [string]$Format
     )
     process {
-        [string]$destDir = '.\new-image-formats'
+        [string]$destDir = '.\{0}' -f $Format
         if (!(Test-MyCommandExists -Command 'magick') ) {
             throw 'ImageMagick was not found.'
         }
