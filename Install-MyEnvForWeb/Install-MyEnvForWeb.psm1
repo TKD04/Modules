@@ -4,13 +4,17 @@ Adds the web develop environment to the current directory.
 
 .PARAMETER UseReact
 Whether to support TypeScript.
+
+.PARAMETER OnlyTs
+Whether to support for only TypeScript files.
 #>
 function Install-MyEnvForWeb {
     [CmdletBinding()]
     [Alias('ienvweb')]
     [OutputType([void])]
     param (
-        [switch]$UseReact
+        [switch]$UseReact,
+        [switch]$OnlyTs
     )
     process {
         # TODO: Add UseTypeScript switch
@@ -19,7 +23,7 @@ function Install-MyEnvForWeb {
         Initialize-MyNpm
         if ($UseReact) {
             Install-MyTypeScript -UseJSX
-            Install-MyReact -UseTypeScript
+            Install-MyReact -UseTypeScript -UseStyledComponents
             Install-MyESLint -UseTypeScript -UseJest -UseBrower -UseReact
         }
         else {
@@ -27,7 +31,12 @@ function Install-MyEnvForWeb {
             Install-MyESLint -UseTypeScript -UseJest -UseBrower
         }
         Install-MyJest -UseTypeScript -UseBrowser
-        Install-MyWebpack
+        if ($OnlyTs) {
+            Install-MyWebpack -OnlyTs
+        }
+        else {
+            Install-MyWebpack
+        }
         Install-MyVSCodeSettingsForWeb
     }
 }
