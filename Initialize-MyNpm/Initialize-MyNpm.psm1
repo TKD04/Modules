@@ -17,14 +17,11 @@ function Initialize-MyNpm {
             '/node_modules/'
             '/dist/'
         )
-        <# Add `npm-check-updates` to update npm packages effortlessly #>
-        npm i -D npm-check-updates
-        Add-MyNpmScript -NameToScript @{
-            'update' = 'ncu -u'
-        }
 
         git add '.\.gitignore' '.\package-lock.json' '.\package.json'
         git commit -m 'Add npm'
+        <# Add `npm-check-updates` to update npm packages effortlessly #>
+        Install-MyNpmCheckUpdates
     }
 }
 
