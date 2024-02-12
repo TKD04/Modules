@@ -17,7 +17,6 @@ function Install-MyEnvForWeb {
         [switch]$OnlyTs
     )
     process {
-        # TODO: Add UseTypeScript switch
         Initialize-MyGit
         Initialize-MyNpm
         if ($UseReact) {
