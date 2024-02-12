@@ -58,8 +58,8 @@ function Install-MyESLint {
             $eslintrc.env.Add('browser', $true)
         }
         if ($UseNode) {
-            # Since we can't omit the extension on the import statements in ESM.
             $eslintrc.env.Add('node', $true)
+            # Since we can't omit the extension on the import statements in ESM.
             $eslintrc.rules.Add(
                 'import/extensions', @(
                     'error'
