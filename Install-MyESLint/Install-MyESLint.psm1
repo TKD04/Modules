@@ -46,7 +46,17 @@ function Install-MyESLint {
             ignorePatterns = @(
                 '/dist/'
             )
-            rules          = @{}
+            rules          = @{
+                'import/no-extraneous-dependencies' = @(
+                    'error'
+                    @{
+                        'devDependencies' = @(
+                            '**/*.test.*'
+                            'gulpfile.*js'
+                        )
+                    }
+                )
+            }
         }
         [string[]]$neededEslintPackages = @(
             'eslint'
