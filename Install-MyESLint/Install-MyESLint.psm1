@@ -47,6 +47,7 @@ function Install-MyESLint {
                 '/dist/'
             )
             rules          = @{
+                # https://stackoverflow.com/questions/44939304/eslint-should-be-listed-in-the-projects-dependencies-not-devdependencies
                 'import/no-extraneous-dependencies' = @(
                     'error'
                     @{
