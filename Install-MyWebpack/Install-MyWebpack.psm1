@@ -12,7 +12,7 @@ function Install-MyWebpack {
         [switch]$OnlyTs
     )
     process {
-        [string[]]$neededPackages = @(
+        [string[]]$neededDevPackages = @(
             'webpack'
             'webpack-cli'
             'ts-loader'
@@ -26,7 +26,7 @@ function Install-MyWebpack {
             Copy-Item -LiteralPath $srcWebpackConfigPath -Destination '.\webpack.config.js'
         }
         else {
-            [string[]]$neededPackages += @(
+            [string[]]$neededDevPackages += @(
                 'webpack-dev-server'
                 'pug-plugin'
                 'css-loader'
@@ -70,7 +70,7 @@ function Install-MyWebpack {
         Export-MyJSON -LiteralPath '.\package.json' -CustomObject $package
         <# Add npm scripts #>
         Add-MyNpmScript -NameToScript $npmScripts
-        npm i -D $neededPackages
+        npm i -D $neededDevPackages
 
         git add '.\package-lock.json' '.\package.json' '.\webpack.config.js'
         if (!$OnlyTs) {

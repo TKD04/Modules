@@ -59,7 +59,7 @@ function Install-MyESLint {
                 )
             }
         }
-        [string[]]$neededEslintPackages = @(
+        [string[]]$neededDevPackages = @(
             'eslint'
             'eslint-plugin-import'
             'eslint-config-prettier'
@@ -83,7 +83,7 @@ function Install-MyESLint {
         }
         if ($UseReact) {
             # ref. https://www.npmjs.com/package/eslint-config-airbnb
-            $neededEslintPackages += @(
+            $neededDevPackages += @(
                 'eslint-config-airbnb'
                 'eslint-plugin-react'
                 'eslint-plugin-react-hooks'
@@ -96,14 +96,14 @@ function Install-MyESLint {
         }
         else {
             # ref. https://www.npmjs.com/package/eslint-config-airbnb-base
-            $neededEslintPackages += 'eslint-config-airbnb-base'
+            $neededDevPackages += 'eslint-config-airbnb-base'
             $eslintrc.extends += 'airbnb-base'
         }
         if ($UseTypeScript) {
             # ref. https://www.npmjs.com/package/eslint-config-airbnb-typescript
             # ref. https://typescript-eslint.io/linting/typed-linting/
             # ref. https://typescriptbook.jp/tutorials/eslint#typescript-eslint%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%9C%E3%82%8B
-            $neededEslintPackages += @(
+            $neededDevPackages += @(
                 'eslint-config-airbnb-typescript'
                 '@typescript-eslint/eslint-plugin'
                 '@typescript-eslint/parser'
@@ -149,7 +149,7 @@ function Install-MyESLint {
         if ($UseJest) {
             # ref. https://www.npmjs.com/package/eslint-plugin-jest
             # ref. https://github.com/jest-community/eslint-plugin-jest#running-rules-only-on-test-related-files
-            $neededEslintPackages += 'eslint-plugin-jest'
+            $neededDevPackages += 'eslint-plugin-jest'
             [hashtable]$eslintOverridesJest = [ordered]@{
                 env     = @{
                     jest = $true
@@ -164,7 +164,7 @@ function Install-MyESLint {
             $eslintrc.Add('overrides', @($eslintOverridesJest))
         }
         $eslintrc.extends += 'prettier'
-        npm i -D $neededEslintPackages
+        npm i -D $neededDevPackages
         Export-MyJSON -LiteralPath $eslintrcPath -CustomObject $eslintrc
         Add-MyNpmScript -NameToScript @{
             'lint' = 'eslint .'
