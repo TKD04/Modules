@@ -20,7 +20,7 @@ function Install-MyEnvForWeb {
         Initialize-MyGit
         Initialize-MyNpm
         if ($UseReact) {
-            Install-MyTypeScript -UseJSX
+            Install-MyTypeScript -UseReact
             Install-MyReact -UseTypeScript -UseStyledComponents
             Install-MyESLint -UseTypeScript -UseJest -UseBrower -UseReact
         }

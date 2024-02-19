@@ -8,7 +8,7 @@ Whether to enable "noEmit".
 .PARAMETER UseNode
 Whether to support Node.
 
-.PARAMETER UseJSX
+.PARAMETER UseReact
 Whether to support React.
 #>
 function Install-MyTypeScript {
@@ -17,7 +17,7 @@ function Install-MyTypeScript {
     param (
         [switch]$UseNoEmit,
         [switch]$UseNode,
-        [switch]$UseJSX
+        [switch]$UseReact
     )
     process {
         [hashtable]$tsConfig = [ordered]@{
@@ -81,7 +81,7 @@ function Install-MyTypeScript {
         if ($UseNoEmit) {
             $tsConfig.compilerOptions.Add('noEmit', $true)
         }
-        if ($UseJSX) {
+        if ($UseReact) {
             $tsConfig.compilerOptions.Add('jsx', 'react-jsx')
         }
         npm i -D typescript
