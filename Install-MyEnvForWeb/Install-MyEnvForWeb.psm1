@@ -21,14 +21,14 @@ function Install-MyEnvForWeb {
         Initialize-MyNpm
         if ($UseReact) {
             Install-MyTypeScript -UseReact
-            Install-MyReact -UseTypeScript -UseStyledComponents
+            Install-MyReact -UseStyledComponents
             Install-MyESLint -UseTypeScript -UseJest -UseBrower -UseReact
         }
         else {
             Install-MyTypeScript
             Install-MyESLint -UseTypeScript -UseJest -UseBrower
         }
-        Install-MyJest -UseTypeScript -UseBrowser
+        Install-MyJest -UseBrowser
         if ($OnlyTs) {
             Install-MyWebpack -OnlyTs
         }

@@ -2,9 +2,6 @@
 .SYNOPSIS
 Adds React to the current directory.
 
-.PARAMETER UseTypeScript
-Whether to support TypeScript.
-
 .PARAMETER UseStyledComponents
 Whether to support StyledComponents.
 #>
@@ -16,13 +13,20 @@ function Install-MyReact {
         [switch]$UseStyledComponents
     )
     process {
-        npm i react react-dom
-        if ($UseTypeScript) {
-            npm i -D @types/react @types/react-dom
-        }
+        [string[]]$neededPackages = @(
+            'react'
+            'react-dom'
+        )
+        [string[]]$neededDevPackages = @(
+            '@types/react'
+            '@types/react-dom'
+        )
+
         if ($UseStyledComponents) {
-            npm i -D styled-components
+            $neededDevPackages += 'styled-components'
         }
+        npm i $neededPackages
+        npm i -D $neededDevPackages
 
         git add '.\package-lock.json' '.\package.json'
         git commit -m 'Add React'
