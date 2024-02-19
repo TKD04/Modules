@@ -47,7 +47,6 @@ function Install-MyWebpack {
 
             <# Creates needed folders #>
             New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
-            New-Item -Path '.\src' -Name 'icons' -ItemType 'Directory'
             New-Item -Path '.\src' -Name 'pug' -ItemType 'Directory'
             New-Item -Path '.\src' -Name 'scss' -ItemType 'Directory'
             New-Item -Path '.\src' -Name 'ts' -ItemType 'Directory'
