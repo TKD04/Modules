@@ -1,4 +1,4 @@
-﻿[string]$Global:gitignoreDirPath = 'D:\dev\gitignore'
+﻿[string]$Global:gitignoreDirPath = 'G:\dev\gitignore'
 
 [string[]]$variablesToExport = @(
     '$gitignoreDirPath'
