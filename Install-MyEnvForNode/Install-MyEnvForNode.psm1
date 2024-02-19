@@ -10,9 +10,6 @@ Whether to support TypeScript.
 .PARAMETER UseJest
 Whether to use Jest.
 
-.PARAMETER UseExpress
-Whether to use Express.
-
 .PARAMETER AddWatch
 Whether to add `watch` to npm scripts.
 #>
@@ -23,7 +20,6 @@ function Install-MyEnvForNode {
     param(
         [switch]$UseTypeScript,
         [switch]$UseJest,
-        [switch]$UseExpress,
         [switch]$AddWatch
     )
     process {
@@ -44,12 +40,6 @@ function Install-MyEnvForNode {
         }
         else {
             Install-MyESLint -UseNode
-        }
-        if ($UseTypeScript -and $UseExpress) {
-            Install-MyExpress -UseTypeScript
-        }
-        elseif (!$UseTypeScript -and $UseExpress) {
-            Install-MyExpress
         }
         Install-MyVSCodeSettingsForWeb
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
