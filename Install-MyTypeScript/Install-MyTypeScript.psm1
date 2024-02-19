@@ -10,9 +10,6 @@ Whether to support Node.
 
 .PARAMETER UseJSX
 Whether to support React.
-
-.PARAMETER UseLit
-Whether to support Lit.
 #>
 function Install-MyTypeScript {
     [CmdletBinding()]
@@ -20,8 +17,7 @@ function Install-MyTypeScript {
     param (
         [switch]$UseNoEmit,
         [switch]$UseNode,
-        [switch]$UseJSX,
-        [switch]$UseLit
+        [switch]$UseJSX
     )
     process {
         [hashtable]$tsConfig = [ordered]@{
@@ -87,9 +83,6 @@ function Install-MyTypeScript {
         }
         if ($UseJSX) {
             $tsConfig.compilerOptions.Add('jsx', 'react-jsx')
-        }
-        if ($UseLit) {
-            $tsConfig.compilerOptions.Add('experimentalDecorators', $true)
         }
         npm i -D typescript
         Export-MyJSON -LiteralPath '.\tsconfig.json' -CustomObject $tsConfig
