@@ -45,12 +45,7 @@ function Install-MyEnvForNode {
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
         if ($AddWatch -and $UseTypeScript) {
             Install-MyTSNode
-            Add-MyNpmScript -NameToScript @{
-                'watch' = 'nodemon --watch src/**/*.ts --exec ts-node src/app.ts'
-            }
-            npm i -D nodemon
-
-            git add '.\package-lock.json'
+            Install-MyNodemon
         }
         elseif ($AddWatch -and !$UseTypeScript) {
             Add-MyNpmScript -NameToScript @{
