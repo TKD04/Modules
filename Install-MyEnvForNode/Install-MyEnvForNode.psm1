@@ -38,7 +38,7 @@ function Install-MyEnvForNode {
         Join-Path -Path $gitignoreDirPath -ChildPath 'Node.gitignore' |
         Copy-Item -Destination '.\.gitignore'
         New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
-        New-Item -Path '.\src' -Name 'app.ts' -ItemType 'Directory'
+        New-Item -Path '.\src' -Name 'app.ts' -ItemType 'File'
 
         git add '.\.gitignore' '.\package.json'
         git commit -m 'Add environment for Node'
