@@ -71,7 +71,13 @@ function Install-MyWebpack {
             Copy-Item -LiteralPath $srcTailwindConfigPath -Destination '.\tailwind.config.js'
             Copy-Item -LiteralPath $srcLayoutPug -Destination '.\src\pug\_layout.pug'
             Copy-Item -LiteralPath $srcIndexPug -Destination '.\src\pug\index.pug'
-            New-Item -Path '.\src\scss' -Name 'style.scss' -ItemType 'File'
+            if ($UseDaisyUi) {
+                [string]$srcStyleScss = Join-Path -Path $PSScriptRoot -ChildPath '.\daisy-ui.style.scss'
+                Copy-Item -LiteralPath $srcStyleScss -Destination '.\src\scss\style.scss'
+            }
+            else {
+                New-Item -Path '.\src\scss' -Name 'style.scss' -ItemType 'File'
+            }
             New-Item -Path '.\src\ts' -Name 'index.ts' -ItemType 'File'
             $npmScripts.Add(
                 'dev',
