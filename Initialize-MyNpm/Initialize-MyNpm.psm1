@@ -18,7 +18,7 @@ function Initialize-MyNpm {
             '/dist/'
         )
 
-        git add '.\.gitignore' '.\package-lock.json' '.\package.json'
+        git add '.\.gitignore' '.\package.json'
         git commit -m 'Add npm'
         <# Add `npm-check-updates` to update npm packages effortlessly #>
         Install-MyNpmCheckUpdates
