@@ -2,11 +2,11 @@
 .SYNOPSIS
 Adds the web develop environment to the current directory.
 
-.PARAMETER UseReact
-Whether to support TypeScript.
-
 .PARAMETER OnlyTs
 Whether to support for only TypeScript files.
+
+.PARAMETER UseReact
+Whether to support TypeScript.
 
 .PARAMETER UseDaysyUi
 Whether to support daisyUI.
@@ -16,8 +16,8 @@ function Install-MyEnvForWeb {
     [Alias('ienvweb')]
     [OutputType([void])]
     param (
-        [switch]$UseReact,
         [switch]$OnlyTs,
+        [switch]$UseReact,
         [switch]$UseDaysyUi
     )
     process {
