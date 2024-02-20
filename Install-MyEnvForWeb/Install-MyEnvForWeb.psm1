@@ -22,7 +22,7 @@ function Install-MyEnvForWeb {
         if ($UseReact) {
             Install-MyTypeScript -UseReact
             Install-MyESLint -UseTypeScript -UseJest -UseBrower -UseReact
-            Install-MyReact -UseStyledComponents
+            Install-MyReact
         }
         else {
             Install-MyTypeScript

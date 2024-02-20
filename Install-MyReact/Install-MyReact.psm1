@@ -1,16 +1,12 @@
 ﻿<#
 .SYNOPSIS
 Adds React to the current directory.
-
-.PARAMETER UseStyledComponents
-Whether to support StyledComponents.
 #>
 function Install-MyReact {
     [CmdletBinding()]
     [OutputType([void])]
     param (
         [switch]$UseTypeScript,
-        [switch]$UseStyledComponents
     )
     process {
         [string[]]$neededPackages = @(
@@ -22,9 +18,6 @@ function Install-MyReact {
             '@types/react-dom'
         )
 
-        if ($UseStyledComponents) {
-            $neededDevPackages += 'styled-components'
-        }
         npm i $neededPackages
         npm i -D $neededDevPackages
 
