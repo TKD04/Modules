@@ -35,6 +35,7 @@ function Install-MyWebpack {
                 'autoprefixer'
                 'sass-loader'
                 'sass'
+                'styled-components'
                 'css-minimizer-webpack-plugin'
                 'terser-webpack-plugin'
                 'image-minimizer-webpack-plugin'
