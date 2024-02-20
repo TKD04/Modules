@@ -21,13 +21,12 @@ function Install-MyEnvForNode {
     process {
         Initialize-MyGit
         Initialize-MyNpm
+        Install-MyTypeScript -UseNode
         if ($UseJest) {
-            Install-MyTypeScript -UseNode
             Install-MyESLint -UseTypeScript -UseNode -UseJest
             Install-MyJest -UseNode
         }
         else {
-            Install-MyTypeScript -UseNode
             Install-MyESLint -UseTypeScript -UseNode
         }
         if ($AddWatch) {
