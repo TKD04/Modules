@@ -6,7 +6,7 @@ function Install-MyReact {
     [CmdletBinding()]
     [OutputType([void])]
     param (
-        [switch]$UseTypeScript,
+        [switch]$UseTypeScript
     )
     process {
         [string[]]$neededPackages = @(
