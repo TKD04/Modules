@@ -8,7 +8,9 @@ function Install-MyTSNode {
     param ()
     process {
         [hashtable]$tsConfigTsnode = [ordered]@{
-            swc = $true
+            transpileOnly = $true
+            files         = $true
+            swc           = $true
         }
 
         [hashtable]$tsConfig = Import-MyJSON -LiteralPath '.\tsconfig.json' -AsHashTable
