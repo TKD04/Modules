@@ -4,14 +4,21 @@ Adds webpack to the current directory.
 
 .PARAMETER OnlyTs
 Whether to support for only TypeScript files.
+
+.PARAMETER UseDaisyUi
+Whether to support daisyUI.
 #>
 function Install-MyWebpack {
     [CmdletBinding()]
     [OutputType([void])]
     param (
-        [switch]$OnlyTs
+        [switch]$OnlyTs,
+        [switch]$UseDaisyUi
     )
     process {
+        if ($OnlyTs -and $UseDaisyUi) {
+            throw 'Only either $OnlyTs or $UseDaisyUi can be enabled.'
+        }
         [string[]]$neededDevPackages = @(
             'webpack'
             'webpack-cli'
@@ -56,6 +63,10 @@ function Install-MyWebpack {
             [string]$srcTailwindConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\tailwind.config.js'
             [string]$srcLayoutPug = Join-Path -Path $PSScriptRoot -ChildPath '.\_layout.pug'
             [string]$srcIndexPug = Join-Path -Path $PSScriptRoot -ChildPath '.\index.pug'
+            if ($UseDaisyUi) {
+                $neededDevPackages += 'daisyui'
+                $srcTailwindConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\daisy-ui.tailwind.config.js'
+            }
             Copy-Item -LiteralPath $srcWebpackConfigPath -Destination '.\webpack.config.js'
             Copy-Item -LiteralPath $srcTailwindConfigPath -Destination '.\tailwind.config.js'
             Copy-Item -LiteralPath $srcLayoutPug -Destination '.\src\pug\_layout.pug'

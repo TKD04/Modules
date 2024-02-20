@@ -7,6 +7,9 @@ Whether to support TypeScript.
 
 .PARAMETER OnlyTs
 Whether to support for only TypeScript files.
+
+.PARAMETER UseDaysyUi
+Whether to support daisyUI.
 #>
 function Install-MyEnvForWeb {
     [CmdletBinding()]
@@ -14,7 +17,8 @@ function Install-MyEnvForWeb {
     [OutputType([void])]
     param (
         [switch]$UseReact,
-        [switch]$OnlyTs
+        [switch]$OnlyTs,
+        [switch]$UseDaysyUi
     )
     process {
         Initialize-MyGit
@@ -31,6 +35,9 @@ function Install-MyEnvForWeb {
         Install-MyJest -UseBrowser -UseReact
         if ($OnlyTs) {
             Install-MyWebpack -OnlyTs
+        }
+        elseif ($UseDaysyUi) {
+            Install-MyWebpack -UseDaisyUi
         }
         else {
             Install-MyWebpack
