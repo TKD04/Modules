@@ -28,7 +28,7 @@ function Install-MyEnvForWeb {
             Install-MyTypeScript
             Install-MyESLint -UseTypeScript -UseJest -UseBrower
         }
-        Install-MyJest -UseBrowser
+        Install-MyJest -UseBrowser -UseReact
         if ($OnlyTs) {
             Install-MyWebpack -OnlyTs
         }

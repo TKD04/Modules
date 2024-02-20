@@ -7,13 +7,17 @@ Whether to support browser (dom).
 
 .PARAMETER UseNode
 Whether to support Node.
+
+.PARAMETER UseReact
+Whether to support React.
 #>
 function Install-MyJest {
     [CmdletBinding()]
     [OutputType([void])]
     param(
         [switch]$UseBrowser,
-        [switch]$UseNode
+        [switch]$UseNode,
+        [switch]$UseReact
     )
     process {
         if ($UseBrowser -and $UseNode) {
@@ -38,6 +42,13 @@ function Install-MyJest {
         if ($UseNode) {
             [string]$SrcJestConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\ts.node.jest.config.js'
             Copy-Item -LiteralPath $SrcJestConfigPath -Destination $jestConfigPath
+        }
+        if ($UseReact) {
+            $neededDevPackages += @(
+                '@testing-library/jest-dom'
+                '@testing-library/react'
+                '@testing-library/user-event'
+            )
         }
         Add-MyNpmScript -NameToScript @{
             'test' = 'jest'
