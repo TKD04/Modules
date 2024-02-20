@@ -36,6 +36,7 @@ function Install-MyWebpack {
                 'sass-loader'
                 'sass'
                 'styled-components'
+                'tailwindcss'
                 'css-minimizer-webpack-plugin'
                 'terser-webpack-plugin'
                 'image-minimizer-webpack-plugin'
@@ -52,9 +53,11 @@ function Install-MyWebpack {
             New-Item -Path '.\src' -Name 'scss' -ItemType 'Directory'
             New-Item -Path '.\src' -Name 'ts' -ItemType 'Directory'
             [string]$srcWebpackConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\webpack.config.js'
+            [string]$srcTailwindConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\tailwind.config.js'
             [string]$srcLayoutPug = Join-Path -Path $PSScriptRoot -ChildPath '.\_layout.pug'
             [string]$srcIndexPug = Join-Path -Path $PSScriptRoot -ChildPath '.\index.pug'
             Copy-Item -LiteralPath $srcWebpackConfigPath -Destination '.\webpack.config.js'
+            Copy-Item -LiteralPath $srcTailwindConfigPath -Destination '.\tailwind.config.js'
             Copy-Item -LiteralPath $srcLayoutPug -Destination '.\src\pug\_layout.pug'
             Copy-Item -LiteralPath $srcIndexPug -Destination '.\src\pug\index.pug'
             New-Item -Path '.\src\scss' -Name 'style.scss' -ItemType 'File'
@@ -72,7 +75,7 @@ function Install-MyWebpack {
         Add-MyNpmScript -NameToScript $npmScripts
         npm i -D $neededDevPackages
 
-        git add '.\package-lock.json' '.\package.json' '.\webpack.config.js'
+        git add '.\package-lock.json' '.\package.json' '.\webpack.config.js' '.\tailwind.config.js'
         if (!$OnlyTs) {
             git add '.\src'
         }
