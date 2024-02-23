@@ -44,6 +44,7 @@ function Install-MyWebpack {
                 'sass'
                 'styled-components'
                 'tailwindcss'
+                '@tailwindcss/typography'
                 'css-minimizer-webpack-plugin'
                 'terser-webpack-plugin'
                 'image-minimizer-webpack-plugin'
