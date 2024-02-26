@@ -84,6 +84,7 @@ function Install-MyWebpack {
                 'dev',
                 'webpack serve --open --mode development --devtool eval-cheap-module-source-map'
             )
+            git add '.\src'
         }
         <# Add "sideEffects: false" to package.json #>
         [hashtable]$package = Import-MyJSON -LiteralPath '.\package.json' -AsHashTable
@@ -94,9 +95,6 @@ function Install-MyWebpack {
         npm i -D $neededDevPackages
 
         git add '.\package-lock.json' '.\package.json' '.\webpack.config.js' '.\tailwind.config.js'
-        if (!$OnlyTs) {
-            git add '.\src'
-        }
         git commit -m 'Add webpack'
     }
 }
