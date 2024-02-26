@@ -21,6 +21,10 @@ function Install-MyEnvForWeb {
         [switch]$UseDaysyUi
     )
     process {
+        if ($OnlyTs -and ($UseReact -or $UseDaysyUi)) {
+            throw 'Only either $OnlyTs or $UseReact and $UseDaisyUi can be enabled.'
+        }
+
         Initialize-MyGit
         Initialize-MyNpm
         if ($UseReact) {
