@@ -2,10 +2,10 @@
 .SYNOPSIS
 Adds the VSCode settings for Web to the current directory.
 
-.PARAMETER $UseStyledComponents
+.PARAMETER UseStyledComponents
 Whether to support styled-components.
 
-.PARAMETER $UseTailwindCss
+.PARAMETER UseTailwindCss
 Whether to support tailwindcss.
 #>
 function Install-MyVSCodeSettingsForWeb {
