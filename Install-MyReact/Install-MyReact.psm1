@@ -1,6 +1,9 @@
 ﻿<#
 .SYNOPSIS
 Adds React to the current directory.
+
+.PARAMETER UseTypeScript
+Whether to support TypeScript
 #>
 function Install-MyReact {
     [CmdletBinding()]
