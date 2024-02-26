@@ -49,10 +49,10 @@ function Install-MyVSCodeSettingsForWeb {
         }
 
         if ($UseStyledComponents) {
-            $extensions += 'styled-components.vscode-styled-components'
+            $extensions.recommendations += 'styled-components.vscode-styled-components'
         }
         if ($UseTailwindCss) {
-            $extensions += 'bradlc.vscode-tailwindcss'
+            $extensions.recommendations += 'bradlc.vscode-tailwindcss'
         }
 
         Install-MyVSCodeSettings -Settings $settings -Extensions $extensions
