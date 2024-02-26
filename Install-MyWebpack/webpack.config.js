@@ -102,6 +102,7 @@ module.exports = {
   devServer: {
     port: 3000,
     static: path.resolve(__dirname, "dist"),
+    watchFiles: ["./src/**/*.*"],
     hot: true,
   },
 };
