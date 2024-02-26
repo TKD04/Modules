@@ -27,26 +27,35 @@ function Install-MyEnvForWeb {
 
         Initialize-MyGit
         Initialize-MyNpm
+        if ($OnlyTs) {
+            Install-MyTypeScript
+            Install-MyESLint -UseTypeScript -UseJest -UseBrower
+            Install-MyJest -UseBrowser
+            Install-MyPrettier
+            Install-MyVSCodeSettingsForWeb
+            return
+        }
         if ($UseReact) {
             Install-MyTypeScript -UseReact
             Install-MyESLint -UseTypeScript -UseJest -UseBrower -UseReact
-            Install-MyReact
+            Install-MyReact -UseTypeScript
+            Install-MyJest -UseBrowser -UseReact
+            Install-MyPrettier -UseTailwindcss
+            Install-MyVSCodeSettingsForWeb -UseStyledComponents -UseTailwindCss
         }
         else {
             Install-MyTypeScript
             Install-MyESLint -UseTypeScript -UseJest -UseBrower
+            Install-MyJest -UseBrowser
+            Install-MyPrettier -UseTailwindcss
+            Install-MyVSCodeSettingsForWeb -UseStyledComponents -UseTailwindCss
         }
-        Install-MyJest -UseBrowser -UseReact
-        if ($OnlyTs) {
-            Install-MyWebpack -OnlyTs
-        }
-        elseif ($UseDaysyUi) {
+        if ($UseDaysyUi) {
             Install-MyWebpack -UseDaisyUi
         }
         else {
             Install-MyWebpack
         }
-        Install-MyVSCodeSettingsForWeb
     }
 }
 
