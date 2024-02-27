@@ -56,6 +56,10 @@ function Install-MyEnvForWeb {
         else {
             Install-MyWebpack
         }
+
+        npm run format
+        git add .
+        git commit -m 'Format by prettier'
     }
 }
 
