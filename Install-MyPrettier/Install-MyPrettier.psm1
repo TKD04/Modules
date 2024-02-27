@@ -19,7 +19,10 @@ function Install-MyPrettier {
         if ($UseTailwindcss) {
             [string]$srcPrettierConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\prettier.config.js'
             Copy-Item -LiteralPath $srcPrettierConfigPath -Destination '.\prettier.config.js'
-            $neededDevPackages += 'prettier-plugin-tailwindcss'
+            $neededDevPackages += @(
+                '@prettier/plugin-pug'
+                'prettier-plugin-tailwindcss'
+            )
             git add '.\prettier.config.js'
         }
         Add-MyNpmScript -NameToScript @{
