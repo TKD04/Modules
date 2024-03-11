@@ -62,6 +62,8 @@ function Install-MyTypeScript {
                     'dom.iterable'
                 )
                 'target'                             = 'es2016'
+                <# Projects #>
+                'incremental'                        = $true
                 <# Completeness #>
                 'skipLibCheck'                       = $true
             }
