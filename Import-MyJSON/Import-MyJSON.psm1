@@ -13,20 +13,31 @@ function Import-MyJSON {
     [OutputType([PSCustomObject])]
     param (
         [Parameter(Mandatory, ValueFromPipeline)]
+        [ValidateScript({
+                if (!(Test-MyStrictPath -LiteralPath $_)) {
+                    throw "The path '$_' does not exist or is not accessible."
+                }
+
+                $true
+            })]
         [string]$LiteralPath,
         [switch]$AsHashTable
     )
     process {
-        if (!(Test-MyStrictPath -LiteralPath $LiteralPath)) {
-            throw '$LiteralPath was not found.'
+        try {
+            [string]$json = Get-Content -LiteralPath $LiteralPath -Raw
+
+            if ($AsHashTable) {
+                ConvertFrom-Json -InputObject $json -AsHashtable
+            }
+            else {
+                ConvertFrom-Json -InputObject $json
+            }
+        }
+        catch {
+            Write-Error -Message "Failed to import JSON from $LiteralPath. $_"
         }
 
-        if ($AsHashTable) {
-            Get-Content -LiteralPath $LiteralPath -Raw | ConvertFrom-Json -AsHashtable
-        }
-        else {
-            Get-Content -LiteralPath $LiteralPath -Raw | ConvertFrom-Json
-        }
     }
 }
 

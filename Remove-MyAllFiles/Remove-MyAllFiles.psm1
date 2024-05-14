@@ -8,8 +8,7 @@ function Remove-MyAllFiles {
     [OutputType([void])]
     param ()
     process {
-        [System.IO.FileInfo[]]$allFiles = Get-ChildItem -File
-        Remove-Item $allFiles -Confirm
+        Get-ChildItem -File | Remove-Item $allFiles -Confirm:$Confirm -WhatIf
     }
 }
 

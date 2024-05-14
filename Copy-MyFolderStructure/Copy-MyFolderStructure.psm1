@@ -10,15 +10,20 @@ function Copy-MyFolderStructure {
     [Alias('copyfolderstructure')]
     [OutputType([void])]
     param(
+        [Parameter(Mandatory)]
+        [ValidateScript({
+                if (!(Test-MyStrictPath -LiteralPath $_)) {
+                    throw "The path '$_' does not exist or is not accessible."
+                }
+
+                $true
+            })]
         [string]$LiteralPath
     )
     process {
-        [string]$dirName = Resolve-Path -LiteralPath $LiteralPath | Split-Path -Path $absoluteSrcPath -Leaf
-        [string]$destPath = '.\copied-folder-structure_{0}' -f $dirName
+        [string]$dirName = Resolve-Path -LiteralPath $LiteralPath | Split-Path -Leaf
+        [string]$destPath = '.\_{0}' -f $dirName
 
-        if (!(Test-MyStrictPath -LiteralPath $LiteralPath)) {
-            throw '$LiteralPath not found.'
-        }
         if (!(Test-MyStrictPath -LiteralPath $destPath)) {
             New-Item -Path '.\' -Name $destPath -ItemType 'Directory'
         }

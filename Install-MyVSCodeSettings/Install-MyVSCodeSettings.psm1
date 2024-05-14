@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Adds the given VSCode settings to the current directory.
+Adds the given VSCode settings and extensions to the current directory.
 #>
 function Install-MyVSCodeSettings {
     [CmdletBinding()]
@@ -29,7 +29,7 @@ function Install-MyVSCodeSettings {
         }
         Pop-Location
 
-        git commit -m 'Add .vscode'
+        git commit -m 'Add vscode settings and extensions'
     }
 }
 

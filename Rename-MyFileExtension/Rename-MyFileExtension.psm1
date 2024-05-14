@@ -17,25 +17,19 @@ function Rename-MyFileExtension {
     [OutputType([void])]
     param (
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [string]$OldExtension,
         [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [string]$NewExtension,
         [switch]$Recurse
     )
     process {
-        if ($Recurse) {
-            Get-ChildItem -File -Filter ('*.{0}' -f $OldExtension) -Recurse |
-            ForEach-Object {
-                [string]$newName = $_.Name -replace ('.{0}$' -f $OldExtension), ('.{0}' -f $NewExtension)
-                Rename-Item -LiteralPath $_.FullName -NewName $newName
-            }
-        }
-        else {
-            Get-ChildItem -File -Filter ('*.{0}' -f $OldExtension) |
-            ForEach-Object {
-                [string]$newName = $_.Name -replace ('.{0}$' -f $OldExtension), ('.{0}' -f $NewExtension)
-                Rename-Item -LiteralPath $_.FullName -NewName $newName
-            }
+        $files = Get-ChildItem -File -Recurse:$Recurse -Filter "*.$OldExtension"
+
+        foreach ($file in $files) {
+            $newName = $file.FullName -replace "\.$OldExtension$", ".$NewExtension"
+            Rename-Item -LiteralPath $file.FullName -NewName $newName
         }
     }
 }

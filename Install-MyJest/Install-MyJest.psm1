@@ -20,11 +20,8 @@ function Install-MyJest {
         [switch]$UseReact
     )
     process {
-        if ($UseBrowser -and $UseNode) {
-            throw 'Only either $UseBrowser or $UseNode can be enabled.'
-        }
-        if (!$UseBrowser -and !$UseNode) {
-            throw 'Either $UseBrowser or $UseNode must be enabled.'
+        if (($UseBrowser -and $UseNode) -or !($UseBrowser -or $UseNode) ) {
+            throw 'Only enable either $UserBrowser or $UseNode'
         }
 
         [string]$jestConfigPath = '.\jest.config.js'

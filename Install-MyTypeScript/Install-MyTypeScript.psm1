@@ -2,7 +2,7 @@
 .SYNOPSIS
 Adds TypeScript and its settings to the current directory.
 
-.PARAMETER UseNoEmit
+.PARAMETER NoEmit
 Whether to enable "noEmit".
 
 .PARAMETER UseNode
@@ -15,7 +15,7 @@ function Install-MyTypeScript {
     [CmdletBinding()]
     [OutputType([void])]
     param (
-        [switch]$UseNoEmit,
+        [switch]$NoEmit,
         [switch]$UseNode,
         [switch]$UseReact
     )
@@ -80,7 +80,7 @@ function Install-MyTypeScript {
             )
             npm i -D @types/node
         }
-        if ($UseNoEmit) {
+        if ($NoEmit) {
             $tsConfig.compilerOptions.Add('noEmit', $true)
         }
         if ($UseReact) {
