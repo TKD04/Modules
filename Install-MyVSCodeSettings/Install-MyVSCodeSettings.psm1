@@ -11,7 +11,7 @@ function Install-MyVSCodeSettings {
         [PSCustomObject]$Extensions
     )
     process {
-        if ($null -eq $Settings -or $null -eq $Extensions) {
+        if ($null -eq $Settings -and $null -eq $Extensions) {
             throw 'Either $Settings or $Extensions must be [PSCustomObject] at least.'
         }
 
