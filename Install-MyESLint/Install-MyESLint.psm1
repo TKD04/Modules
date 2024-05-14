@@ -82,7 +82,7 @@ function Install-MyESLint {
             $eslintrc.env.Add('webextensions', $true)
         }
         if ($UseReact) {
-            # ref. https://www.npmjs.com/package/eslint-config-airbnb
+            # https://www.npmjs.com/package/eslint-config-airbnb
             $neededDevPackages += @(
                 'eslint-config-airbnb'
                 'eslint-plugin-react'
@@ -95,14 +95,14 @@ function Install-MyESLint {
             )
         }
         else {
-            # ref. https://www.npmjs.com/package/eslint-config-airbnb-base
+            # https://www.npmjs.com/package/eslint-config-airbnb-base
             $neededDevPackages += 'eslint-config-airbnb-base'
             $eslintrc.extends += 'airbnb-base'
         }
         if ($UseTypeScript) {
-            # ref. https://www.npmjs.com/package/eslint-config-airbnb-typescript
-            # ref. https://typescript-eslint.io/linting/typed-linting/
-            # ref. https://typescriptbook.jp/tutorials/eslint#typescript-eslint%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%9C%E3%82%8B
+            # https://www.npmjs.com/package/eslint-config-airbnb-typescript
+            # https://typescript-eslint.io/linting/typed-linting/
+            # https://typescriptbook.jp/tutorials/eslint#typescript-eslint%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%9C%E3%82%8B
             $neededDevPackages += @(
                 'eslint-config-airbnb-typescript'
                 '@typescript-eslint/eslint-plugin'
@@ -121,8 +121,8 @@ function Install-MyESLint {
             }
             $eslintrc.extends += 'plugin:@typescript-eslint/recommended-requiring-type-checking'
             # Use ESLint rules instead of `verbatimModuleSyntax`, as it still has some compatibility issues.
-            # ref. https://zenn.dev/teppeis/articles/2023-04-typescript-5_0-verbatim-module-syntax#verbatimmodulesyntax%E3%81%A8-cjs-%E3%81%AE%E7%9B%B8%E6%80%A7%E3%81%8C%E6%82%AA%E3%81%84
-            # ref. https://johnnyreilly.com/typescript-5-importsnotusedasvalues-error-eslint-consistent-type-imports
+            # https://zenn.dev/teppeis/articles/2023-04-typescript-5_0-verbatim-module-syntax#verbatimmodulesyntax%E3%81%A8-cjs-%E3%81%AE%E7%9B%B8%E6%80%A7%E3%81%8C%E6%82%AA%E3%81%84
+            # https://johnnyreilly.com/typescript-5-importsnotusedasvalues-error-eslint-consistent-type-imports
             $eslintrc.rules.Add('@typescript-eslint/consistent-type-imports', 'error')
             $eslintrc.rules.Add('@typescript-eslint/no-import-type-side-effects', 'error')
             $eslintrc.rules.Add('import/consistent-type-specifier-style', @(
@@ -131,7 +131,7 @@ function Install-MyESLint {
                 )
             )
             <# Create tsconfig.eslint.json to avoid the error below. #>
-            # ref. https://typescript-eslint.io/linting/troubleshooting/#i-get-errors-telling-me-eslint-was-configured-to-run--however-that-tsconfig-does-not--none-of-those-tsconfigs-include-this-file
+            # https://typescript-eslint.io/linting/troubleshooting/#i-get-errors-telling-me-eslint-was-configured-to-run--however-that-tsconfig-does-not--none-of-those-tsconfigs-include-this-file
             [string]$tsconfigEslintPath = '.\tsconfig.eslint.json'
             [hashtable]$tsconfigEslint = [ordered]@{
                 extends         = './tsconfig'
@@ -147,8 +147,8 @@ function Install-MyESLint {
             git add $tsconfigEslintPath
         }
         if ($UseJest) {
-            # ref. https://www.npmjs.com/package/eslint-plugin-jest
-            # ref. https://github.com/jest-community/eslint-plugin-jest#running-rules-only-on-test-related-files
+            # https://www.npmjs.com/package/eslint-plugin-jest
+            # https://github.com/jest-community/eslint-plugin-jest#running-rules-only-on-test-related-files
             $neededDevPackages += 'eslint-plugin-jest'
             [hashtable]$eslintOverridesJest = [ordered]@{
                 env     = @{

@@ -31,7 +31,7 @@ function Install-MyVSCodeSettingsForPython {
             <# isort #>
             'isort.check'                           = $true
             'isort.args'                            = @(
-                # ref. https://github.com/microsoft/vscode-isort/issues/263#issuecomment-1502317376
+                # https://github.com/microsoft/vscode-isort/issues/263#issuecomment-1502317376
                 '--profile'
                 'black'
             )

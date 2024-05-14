@@ -1,6 +1,6 @@
 using namespace System.Management.Automation
 
-# ref. https://devblogs.microsoft.com/scripting/use-a-powershell-function-to-see-if-a-command-exists/
+# https://devblogs.microsoft.com/scripting/use-a-powershell-function-to-see-if-a-command-exists/
 <#
 .SYNOPSIS
 Tests whether the given commend exists.

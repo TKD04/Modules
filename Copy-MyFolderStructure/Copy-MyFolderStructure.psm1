@@ -28,7 +28,7 @@ function Copy-MyFolderStructure {
             New-Item -Path '.\' -Name $destPath -ItemType 'Directory'
         }
 
-        # ref. https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy#parameter
+        # https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy#parameter
         xcopy.exe /E /T $LiteralPath $destPath
     }
 }
