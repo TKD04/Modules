@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
 Adds webpack to the current directory.
 
@@ -49,11 +49,14 @@ function Install-MyWebpack {
                 'imagemin-svgo'
             )
 
-            <# Creates needed folders #>
-            New-Item -Path '.\' -Name 'src' -ItemType 'Directory'
-            New-Item -Path '.\src' -Name 'pug' -ItemType 'Directory'
-            New-Item -Path '.\src' -Name 'scss' -ItemType 'Directory'
-            New-Item -Path '.\src' -Name 'ts' -ItemType 'Directory'
+            <# Creates needed directories and files #>
+            [string[]]$neededDirectories = @(
+                '.\src'
+                '.\src\pug'
+                '.\src\scss'
+                '.\src\ts'
+            )
+            New-MyDirectories -DirectoryPaths $neededDirectories
             [string]$srcWebpackConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\webpack.config.js'
             [string]$srcTailwindConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\tailwind.config.js'
             [string]$srcLayoutPug = Join-Path -Path $PSScriptRoot -ChildPath '.\_layout.pug'
