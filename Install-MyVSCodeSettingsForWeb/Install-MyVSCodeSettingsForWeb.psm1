@@ -1,20 +1,11 @@
 <#
 .SYNOPSIS
 Adds the VSCode settings for Web to the current directory.
-
-.PARAMETER UseStyledComponents
-Whether to support styled-components.
-
-.PARAMETER UseTailwindCss
-Whether to support tailwindcss.
 #>
 function Install-MyVSCodeSettingsForWeb {
     [CmdletBinding()]
     [OutputType([void])]
-    param (
-        [switch]$UseStyledComponents,
-        [switch]$UseTailwindCss
-    )
+    param ()
     process {
         [PSCustomObject]$settings = [PSCustomObject]@{
             <# General #>
@@ -45,14 +36,9 @@ function Install-MyVSCodeSettingsForWeb {
                 'davidanson.vscode-markdownlint'
                 'esbenp.prettier-vscode'
                 'orta.vscode-jest'
+                'styled-components.vscode-styled-components'
+                'bradlc.vscode-tailwindcss'
             )
-        }
-
-        if ($UseStyledComponents) {
-            $extensions.recommendations += 'styled-components.vscode-styled-components'
-        }
-        if ($UseTailwindCss) {
-            $extensions.recommendations += 'bradlc.vscode-tailwindcss'
         }
 
         Install-MyVSCodeSettings -Settings $settings -Extensions $extensions

@@ -41,14 +41,14 @@ function Install-MyEnvForWeb {
             Install-MyReact
             Install-MyJest -UseBrowser -UseReact
             Install-MyPrettier -UseTailwindcss
-            Install-MyVSCodeSettingsForWeb -UseStyledComponents -UseTailwindCss
+            Install-MyVSCodeSettingsForWeb
         }
         else {
             Install-MyTypeScript
             Install-MyESLint -UseTypeScript -UseJest -UseBrower
             Install-MyJest -UseBrowser
             Install-MyPrettier -UseTailwindcss
-            Install-MyVSCodeSettingsForWeb -UseStyledComponents -UseTailwindCss
+            Install-MyVSCodeSettingsForWeb
         }
         if ($UseDaysyUi) {
             Install-MyWebpack -UseDaisyUi
