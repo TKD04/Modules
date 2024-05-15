@@ -4,21 +4,14 @@ Adds webpack to the current directory.
 
 .PARAMETER OnlyTs
 Whether to support for only TypeScript files.
-
-.PARAMETER UseDaisyUi
-Whether to support daisyUI.
 #>
 function Install-MyWebpack {
     [CmdletBinding()]
     [OutputType([void])]
     param (
-        [switch]$OnlyTs,
-        [switch]$UseDaisyUi
+        [switch]$OnlyTs
     )
     process {
-        if ($OnlyTs -and $UseDaisyUi) {
-            throw 'Only either $OnlyTs or $UseDaisyUi can be enabled.'
-        }
         [string[]]$neededDevPackages = @(
             'webpack'
             'webpack-cli'
@@ -45,6 +38,7 @@ function Install-MyWebpack {
                 'styled-components'
                 'tailwindcss'
                 '@tailwindcss/typography'
+                'daisyui'
                 'css-minimizer-webpack-plugin'
                 'terser-webpack-plugin'
                 'image-minimizer-webpack-plugin'
@@ -64,21 +58,12 @@ function Install-MyWebpack {
             [string]$srcTailwindConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\tailwind.config.js'
             [string]$srcLayoutPug = Join-Path -Path $PSScriptRoot -ChildPath '.\_layout.pug'
             [string]$srcIndexPug = Join-Path -Path $PSScriptRoot -ChildPath '.\index.pug'
-            if ($UseDaisyUi) {
-                $neededDevPackages += 'daisyui'
-                $srcTailwindConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\daisy-ui.tailwind.config.js'
-            }
+            [string]$srcStyleScss = Join-Path -Path $PSScriptRoot -ChildPath '.\daisy-ui.style.scss'
             Copy-Item -LiteralPath $srcWebpackConfigPath -Destination '.\webpack.config.js'
             Copy-Item -LiteralPath $srcTailwindConfigPath -Destination '.\tailwind.config.js'
             Copy-Item -LiteralPath $srcLayoutPug -Destination '.\src\pug\_layout.pug'
             Copy-Item -LiteralPath $srcIndexPug -Destination '.\src\pug\index.pug'
-            if ($UseDaisyUi) {
-                [string]$srcStyleScss = Join-Path -Path $PSScriptRoot -ChildPath '.\daisy-ui.style.scss'
-                Copy-Item -LiteralPath $srcStyleScss -Destination '.\src\scss\style.scss'
-            }
-            else {
-                New-Item -Path '.\src\scss' -Name 'style.scss' -ItemType 'File'
-            }
+            Copy-Item -LiteralPath $srcStyleScss -Destination '.\src\scss\style.scss'
             New-Item -Path '.\src\ts' -Name 'index.ts' -ItemType 'File'
             $npmScripts.Add(
                 'dev',
