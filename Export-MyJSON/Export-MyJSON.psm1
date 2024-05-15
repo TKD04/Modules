@@ -16,13 +16,6 @@ function Export-MyJSON {
     [OutputType([void])]
     param (
         [Parameter(Mandatory)]
-        [ValidateScript({
-                if (!(Test-MyStrictPath -LiteralPath $_)) {
-                    throw "The path '$_' does not exist or is not accessible."
-                }
-
-                $true
-            })]
         [string]$LiteralPath,
         [Parameter(Mandatory, ValueFromPipeline)]
         [PSCustomObject]$CustomObject,
