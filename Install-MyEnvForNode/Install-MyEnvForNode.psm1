@@ -34,6 +34,7 @@ function Install-MyEnvForNode {
             Install-MyTSNode
             Install-MyNodemon
         }
+        Install-MyTypeDoc
         Install-MyVSCodeSettingsForWeb
         Join-Path -Path $gitignoreDirPath -ChildPath 'Node.gitignore' |
         Copy-Item -Destination '.\.gitignore'

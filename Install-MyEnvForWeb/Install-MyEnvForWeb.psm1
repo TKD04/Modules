@@ -56,6 +56,7 @@ function Install-MyEnvForWeb {
         else {
             Install-MyWebpack
         }
+        Install-MyTypeDoc
 
         npm run format
         git add .
