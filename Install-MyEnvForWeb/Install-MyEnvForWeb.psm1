@@ -38,7 +38,7 @@ function Install-MyEnvForWeb {
         if ($UseReact) {
             Install-MyTypeScript -UseReact
             Install-MyESLint -UseTypeScript -UseJest -UseBrower -UseReact
-            Install-MyReact -UseTypeScript
+            Install-MyReact
             Install-MyJest -UseBrowser -UseReact
             Install-MyPrettier -UseTailwindcss
             Install-MyVSCodeSettingsForWeb -UseStyledComponents -UseTailwindCss
