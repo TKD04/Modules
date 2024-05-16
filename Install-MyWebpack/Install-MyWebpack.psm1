@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
 Adds webpack to the current directory.
 
@@ -22,67 +22,72 @@ function Install-MyWebpack {
         }
 
         if ($OnlyTs) {
-            [string]$srcWebpackConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\onlyts-webpack.config.js'
-            Copy-Item -LiteralPath $srcWebpackConfigPath -Destination '.\webpack.config.js'
-        }
-        else {
-            [string[]]$neededDevPackages += @(
-                'webpack-dev-server'
-                'pug-plugin'
-                'css-loader'
-                'postcss-loader'
-                'postcss'
-                'autoprefixer'
-                'sass-loader'
-                'sass'
-                'styled-components'
-                'tailwindcss'
-                '@tailwindcss/typography'
-                'daisyui'
-                'css-minimizer-webpack-plugin'
-                'terser-webpack-plugin'
-                'image-minimizer-webpack-plugin'
-                'imagemin'
-                'imagemin-gifsicle'
-                'imagemin-mozjpeg'
-                'imagemin-pngquant'
-                'imagemin-svgo'
-            )
+            Copy-Item -LiteralPath "$PSScriptRoot\onlyts-webpack.config.js" -Destination '.\webpack.config.js'
+            <# Add "sideEffects: false" to package.json #>
+            [hashtable]$package = Import-MyJSON -LiteralPath '.\package.json' -AsHashTable
+            $package.Add('sideEffects', $false)
+            Export-MyJSON -LiteralPath '.\package.json' -CustomObject $package
+            <# Add npm scripts for webpack to package.json #>
+            Add-MyNpmScript -NameToScript $npmScripts
+            npm i -D $neededDevPackages
 
-            <# Creates needed directories and files #>
-            [string[]]$neededDirectories = @(
-                '.\src'
-                '.\src\pug'
-                '.\src\scss'
-                '.\src\ts'
-            )
-            New-MyDirectories -DirectoryPaths $neededDirectories
-            [string]$srcWebpackConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\webpack.config.js'
-            [string]$srcTailwindConfigPath = Join-Path -Path $PSScriptRoot -ChildPath '.\tailwind.config.js'
-            [string]$srcLayoutPug = Join-Path -Path $PSScriptRoot -ChildPath '.\_layout.pug'
-            [string]$srcIndexPug = Join-Path -Path $PSScriptRoot -ChildPath '.\index.pug'
-            [string]$srcStyleScss = Join-Path -Path $PSScriptRoot -ChildPath '.\daisy-ui.style.scss'
-            Copy-Item -LiteralPath $srcWebpackConfigPath -Destination '.\webpack.config.js'
-            Copy-Item -LiteralPath $srcTailwindConfigPath -Destination '.\tailwind.config.js'
-            Copy-Item -LiteralPath $srcLayoutPug -Destination '.\src\pug\_layout.pug'
-            Copy-Item -LiteralPath $srcIndexPug -Destination '.\src\pug\index.pug'
-            Copy-Item -LiteralPath $srcStyleScss -Destination '.\src\scss\style.scss'
-            New-Item -Path '.\src\ts' -Name 'index.ts' -ItemType 'File'
-            $npmScripts.Add(
-                'dev',
-                'webpack serve --open --mode development --devtool eval-cheap-module-source-map'
-            )
-            git add '.\src'
+            git add '.\package-lock.json' '.\package.json' '.\webpack.config.js'
+            git commit -m 'Add webpack'
+            return
         }
+        <# Add needed packages and npm scirpt #>
+        $neededDevPackages += @(
+            'webpack-dev-server'
+            'pug-plugin'
+            'css-loader'
+            'postcss-loader'
+            'postcss'
+            'autoprefixer'
+            'sass-loader'
+            'sass'
+            'styled-components'
+            'tailwindcss'
+            '@tailwindcss/typography'
+            'daisyui'
+            'css-minimizer-webpack-plugin'
+            'terser-webpack-plugin'
+            'image-minimizer-webpack-plugin'
+            'imagemin'
+            'imagemin-gifsicle'
+            'imagemin-mozjpeg'
+            'imagemin-pngquant'
+            'imagemin-svgo'
+        )
+        $npmScripts.Add(
+            'dev',
+            'webpack serve --open --mode development --devtool eval-cheap-module-source-map'
+        )
+        <# Makes needed directories and files #>
+        [string[]]$neededDirectories = @(
+            '.\src'
+            '.\src\pug'
+            '.\src\scss'
+            '.\src\ts'
+        )
+        [hashtable]$sourcesToDestinations = @{
+            "$PSScriptRoot\webpack.config.js"  = '.\webpack.config.js'
+            "$PSScriptRoot\tailwind.config.js" = '.\tailwind.config.js'
+            "$PSScriptRoot\_layout.pug"        = '.\src\pug\_layout.pug'
+            "$PSScriptRoot\index.pug"          = '.\src\pug\index.pug'
+            "$PSScriptRoot\style.scss"         = '.\src\scss\style.scss'
+        }
+        New-MyDirectories -DirectoryPaths $neededDirectories
+        Copy-MyFiles -SourcesToDestinations $sourcesToDestinations
+        New-Item -Path '.\src\ts' -Name 'index.ts' -ItemType 'File'
         <# Add "sideEffects: false" to package.json #>
         [hashtable]$package = Import-MyJSON -LiteralPath '.\package.json' -AsHashTable
         $package.Add('sideEffects', $false)
         Export-MyJSON -LiteralPath '.\package.json' -CustomObject $package
-        <# Add npm scripts #>
+        <# Add npm scripts for webpack to package.json #>
         Add-MyNpmScript -NameToScript $npmScripts
         npm i -D $neededDevPackages
 
-        git add '.\package-lock.json' '.\package.json' '.\webpack.config.js' '.\tailwind.config.js'
+        git add '.\package-lock.json' '.\package.json' '.\webpack.config.js' '.\tailwind.config.js' '.\src'
         git commit -m 'Add webpack'
     }
 }
