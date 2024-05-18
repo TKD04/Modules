@@ -23,31 +23,16 @@ function Install-MyEnvForWeb {
 
         Initialize-MyGit
         Initialize-MyNpm
-        if ($OnlyTs) {
-            Install-MyTypeScript
-            Install-MyESLint -UseTypeScript -UseJest -UseBrower
-            Install-MyJest -UseBrowser
-            Install-MyPrettier
-            Install-MyVSCodeSettingsForWeb
-            return
-        }
+        Install-MyTypeScript -UseReact:$UseReact
         if ($UseReact) {
-            Install-MyTypeScript -UseReact
-            Install-MyESLint -UseTypeScript -UseJest -UseBrower -UseReact
             Install-MyReact
-            Install-MyJest -UseBrowser -UseReact
-            Install-MyPrettier -UseTailwindcss
-            Install-MyVSCodeSettingsForWeb
         }
-        else {
-            Install-MyTypeScript
-            Install-MyESLint -UseTypeScript -UseJest -UseBrower
-            Install-MyJest -UseBrowser
-            Install-MyPrettier -UseTailwindcss
-            Install-MyVSCodeSettingsForWeb
-        }
-        Install-MyWebpack
+        Install-MyESLint -UseTypeScript -UseJest -UseBrower -UseReact:$UseReact
+        Install-MyJest -UseBrowser -UseReact:$UseReact
+        Install-MyPrettier -UseTailwindcss:(!$OnlyTs) -UsePug:(!$OnlyTs)
+        Install-MyWebpack -OnlyTs:$OnlyTs
         Install-MyTypeDoc
+        Install-MyVSCodeSettingsForWeb
 
         npm run format
         git add .

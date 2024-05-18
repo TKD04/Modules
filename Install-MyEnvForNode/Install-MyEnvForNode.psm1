@@ -22,12 +22,9 @@ function Install-MyEnvForNode {
         Initialize-MyGit
         Initialize-MyNpm
         Install-MyTypeScript -UseNode
+        Install-MyESLint -UseTypeScript -UseNode -UseJest:$UseJest
         if ($UseJest) {
-            Install-MyESLint -UseTypeScript -UseNode -UseJest
             Install-MyJest -UseNode
-        }
-        else {
-            Install-MyESLint -UseTypeScript -UseNode
         }
         Install-MyPrettier
         if ($AddWatch) {

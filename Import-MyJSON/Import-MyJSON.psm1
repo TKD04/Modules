@@ -27,12 +27,7 @@ function Import-MyJSON {
         try {
             [string]$json = Get-Content -LiteralPath $LiteralPath -Raw
 
-            if ($AsHashTable) {
-                ConvertFrom-Json -InputObject $json -AsHashtable
-            }
-            else {
-                ConvertFrom-Json -InputObject $json
-            }
+            ConvertFrom-Json -InputObject $json -AsHashtable:$AsHashTable
         }
         catch {
             Write-Error -Message "Failed to import JSON from $LiteralPath. $_"
