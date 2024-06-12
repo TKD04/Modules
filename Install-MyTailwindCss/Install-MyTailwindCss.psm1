@@ -35,7 +35,6 @@ function Install-MyTailwindCss {
             return
         }
 
-        Copy-Item -LiteralPath "$PSScriptRoot\tailwind.config.js" -Destination '.\tailwind.config.js'
         if ($UseDaisyUi) {
             npm i -D daisyui@latest
             Copy-Item -LiteralPath "$PSScriptRoot\daisyui-tailwind.config.js" -Destination '.\tailwind.config.js'
