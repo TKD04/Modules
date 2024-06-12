@@ -6,7 +6,7 @@ Adds Tailwind CSS to the current directory.
 Whether to use daisyUI.
 
 .PARAMETER IsVite
-Wether to support a project created by Vite.
+Whether to support a project created by Vite.
 
 .PARAMETER IsNextJs
 Whether to support a project created by NextJS.
