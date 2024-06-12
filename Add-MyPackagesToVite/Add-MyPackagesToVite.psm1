@@ -54,6 +54,8 @@ function Add-MyPackagesToVite {
                     allowConstantExport = $true
                 }
             ))
+        # Vite uses absolute path ('/') to access public directory
+        $eslintrc.rules.Add('import/no-absolute-path', 'off')
         Export-MyJSON -LiteralPath '.\.eslintrc.json' -CustomObject $eslintrc
         git rm '.\.eslintrc.cjs'
         git add '.\.eslintrc.json'
