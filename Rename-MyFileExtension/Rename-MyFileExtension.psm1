@@ -10,6 +10,9 @@ The file extension which you want to replace the old one with
 
 .PARAMETER Recurse
 Whether to rename the matched files recursively.
+
+.PARAMETER UseGitMv
+Whether to use git mv to rename files.
 #>
 function Rename-MyFileExtension {
     [CmdletBinding()]
@@ -22,14 +25,20 @@ function Rename-MyFileExtension {
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
         [string]$NewExtension,
-        [switch]$Recurse
+        [switch]$Recurse,
+        [switch]$UseGitMv
     )
     process {
         $files = Get-ChildItem -File -Recurse:$Recurse -Filter "*.$OldExtension"
 
         foreach ($file in $files) {
             $newName = $file.FullName -replace "\.$OldExtension$", ".$NewExtension"
-            Rename-Item -LiteralPath $file.FullName -NewName $newName
+            if ($UseGitMv) {
+                git mv $file.FullName $newName
+            }
+            else {
+                Rename-Item -LiteralPath $file.FullName -NewName $newName
+            }
         }
     }
 }
