@@ -20,16 +20,16 @@ function Install-MyTailwindCss {
         [switch]$IsNextJs
     )
     process {
-        npm i -D tailwindcss
+        npm i -D tailwindcss @tailwindcss/typography
 
         if ($IsNextJs) {
             if ($UseDaisyUi) {
                 npm i -D daisyui@latest
-                Copy-Item -LiteralPath "$PSScriptRoot\daisyui-nextjs-tailwind.config.ts" -Destination '.\tailwind.config.ts' -Force
-                git add  '.\tailwind.config.ts'
+                Copy-Item -LiteralPath "$PSScriptRoot\nextjs-daisyui-tailwind.config.ts" -Destination '.\tailwind.config.ts' -Force
             }
+            Copy-Item -LiteralPath "$PSScriptRoot\nextjs-tailwind.config.ts" -Destination '.\tailwind.config.ts' -Force
 
-            git add '.\package-lock.json' '.\package.json'
+            git add '.\package-lock.json' '.\package.json' '.\tailwind.config.ts'
             git commit -m 'Add Tailwind CSS'
 
             return
