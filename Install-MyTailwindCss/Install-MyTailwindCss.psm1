@@ -7,16 +7,34 @@ Whether to use daisyUI.
 
 .PARAMETER IsVite
 Wether to support a project created by Vite.
+
+.PARAMETER IsNextJs
+Whether to support a project created by NextJS.
 #>
 function Install-MyTailwindCss {
     [CmdletBinding()]
     [OutputType([void])]
     param (
         [switch]$UseDaisyUi,
-        [switch]$IsVite
+        [switch]$IsVite,
+        [switch]$IsNextJs
     )
     process {
         npm i -D tailwindcss
+
+        if ($IsNextJs) {
+            if ($UseDaisyUi) {
+                npm i -D daisyui@latest
+                Copy-Item -LiteralPath "$PSScriptRoot\daisyui-nextjs-tailwind.config.ts" -Destination '.\tailwind.config.ts' -Force
+                git add  '.\tailwind.config.ts'
+            }
+
+            git add '.\package-lock.json' '.\package.json'
+            git commit -m 'Add Tailwind CSS'
+
+            return
+        }
+
         Copy-Item -LiteralPath "$PSScriptRoot\tailwind.config.js" -Destination '.\tailwind.config.js'
         if ($UseDaisyUi) {
             npm i -D daisyui@latest
