@@ -66,6 +66,9 @@ function Add-MyPackagesToVite {
         Install-MyPrettier -UseTailwindcss
         <# Tailwind CSS #>
         Install-MyTailwindCss -UseDaisyUi:$UseDaisyUi -IsVite
+        <# Rename .js .cjs for config files to work in type: module #>
+        Rename-MyFileExtension -OldExtension 'js' -NewExtension 'cjs' -UseGitMv
+        git commit -m 'Rename .js .cjs for config files to work in `type: module`'
     }
 }
 
