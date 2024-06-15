@@ -1,9 +1,6 @@
 ﻿<#
 .SYNOPSIS
 Adds some needed packages to a Vite
-
-.PARAMETER UseDaisyUi
-Whether to use daisyUI.
 #>
 function Add-MyPackagesToVite {
     [CmdletBinding()]
@@ -65,7 +62,7 @@ function Add-MyPackagesToVite {
         <# Prettier #>
         Install-MyPrettier -UseTailwindcss
         <# Tailwind CSS #>
-        Install-MyTailwindCss -UseDaisyUi:$UseDaisyUi -IsVite
+        Install-MyTailwindCss -IsVite
         <# Rename .js .cjs for config files to work in type: module #>
         Rename-MyFileExtension -OldExtension 'js' -NewExtension 'cjs' -UseGitMv
         git commit -m 'Rename .js .cjs for config files to work in `type: module`'

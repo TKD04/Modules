@@ -2,9 +2,6 @@
 .SYNOPSIS
 Adds Tailwind CSS to the current directory.
 
-.PARAMETER UseDaisyUi
-Whether to use daisyUI.
-
 .PARAMETER IsVite
 Whether to support a project created by Vite.
 
@@ -15,7 +12,6 @@ function Install-MyTailwindCss {
     [CmdletBinding()]
     [OutputType([void])]
     param (
-        [switch]$UseDaisyUi,
         [switch]$IsVite,
         [switch]$IsNextJs
     )
