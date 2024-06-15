@@ -16,6 +16,10 @@ function Install-MyTailwindCss {
         [switch]$IsNextJs
     )
     process {
+        if ($IsVite -and $IsNextJs) {
+            throw 'Only enable either $IsVite or $IsNextJs'
+        }
+
         npm i -D tailwindcss @tailwindcss/typography
 
         if ($IsNextJs) {
