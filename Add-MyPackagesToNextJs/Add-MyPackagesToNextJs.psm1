@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
 Adds some needed packages to a Next.js project.
 #>
@@ -44,6 +44,10 @@ function Add-MyPackagesToNextJs {
         git commit -m 'Make eslintrc more strict'
         <# Jest #>
         Install-MyJest -UseBrowser -UseReact
+        # Replace `<rootDir>/src` with `<rootDir>` in roots to work properly in Next.js
+        Copy-Item -LiteralPath "$PSScriptRoot\jest-nextjs.config.js" -Destination '.\jest.config.js' -Force
+        git add '.\jest.config.js'
+        git commit -m 'Change `roots` from "<rootDir>/src" to "<rootDir>"'
         <# Prettier #>
         Install-MyPrettier -UseTailwindcss
         <# Tailwind CSS #>
