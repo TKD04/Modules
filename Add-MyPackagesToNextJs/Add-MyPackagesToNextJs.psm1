@@ -36,7 +36,7 @@ function Add-MyPackagesToNextJs {
         <# ESLint #>
         # Make eslintrc more strict
         git rm '.\.eslintrc.json'
-        Install-MyESLint -UseTypeScript -UseReact -UseJest
+        Install-MyESLint -UseTypeScript -UseReact -UseJest -IsNextJs
         [hashtable]$eslintrc = Import-MyJSON -LiteralPath '.\.eslintrc.json' -AsHashTable
         $eslintrc.extends += 'next/core-web-vitals'
         Export-MyJSON -LiteralPath '.\.eslintrc.json' -CustomObject $eslintrc

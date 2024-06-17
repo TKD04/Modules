@@ -11,6 +11,9 @@ Whether to support the global varialbes in Node.
 .PARAMETER UseWebExtensions
 Whether to support the global variables in web extensions.
 
+.PARAMETER IsNextJs
+Whether to support a project created by Next.js
+
 .PARAMETER UseTypeScript
 Whether to add the rules for TypeScript.
 
@@ -27,6 +30,7 @@ function Install-MyESLint {
         [switch]$UseBrower,
         [switch]$UseNode,
         [switch]$UseWebExtensions,
+        [switch]$IsNextJs,
         [switch]$UseTypeScript,
         [switch]$UseReact,
         [switch]$UseJest
@@ -54,6 +58,8 @@ function Install-MyESLint {
                         'devDependencies' = @(
                             '**/*.test.*'
                             'gulpfile.*js'
+                            '*.config.*js'
+                            '*.config.ts'
                         )
                     }
                 )
@@ -142,6 +148,21 @@ function Install-MyESLint {
                 )
                 compilerOptions = @{
                     noEmit = $true
+                }
+            }
+            if ($IsNextJs) {
+                $tsconfigEslint = [ordered]@{
+                    extends         = './tsconfig'
+                    include         = @(
+                        'next-env.d.ts',
+                        '*.*js',
+                        '**/*.ts',
+                        '**/*.tsx',
+                        '.next/types/**/*.ts'
+                    )
+                    compilerOptions = @{
+                        noEmit = $true
+                    }
                 }
             }
             Export-MyJSON -LiteralPath $tsconfigEslintPath -CustomObject $tsconfigEslint
