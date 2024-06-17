@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
 Adds some needed packages to a Next.js project.
 #>
@@ -34,6 +34,10 @@ function Add-MyPackagesToNextJs {
         git add '.\tsconfig.json'
         git commit -m 'Make tsconfig more strict'
         <# ESLint #>
+        # Replace `next lint` with `eslint .` on `lint` npm script
+        [hashtable]$package = Import-MyJSON -LiteralPath '.\package.json' -AsHashTable
+        $package.scripts.Remove('lint')
+        Export-MyJSON -LiteralPath '.\package.json' -CustomObject $package
         # Make eslintrc more strict
         git rm '.\.eslintrc.json'
         Install-MyESLint -UseTypeScript -UseReact -UseJest -IsNextJs
