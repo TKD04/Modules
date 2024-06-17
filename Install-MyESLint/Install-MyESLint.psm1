@@ -137,7 +137,8 @@ function Install-MyESLint {
                 extends         = './tsconfig'
                 include         = @(
                     'src',
-                    '*.*js'
+                    '*.*js',
+                    '*.ts'
                 )
                 compilerOptions = @{
                     noEmit = $true
