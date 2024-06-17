@@ -5,9 +5,7 @@ Adds some needed packages to a Vite
 function Add-MyPackagesToVite {
     [CmdletBinding()]
     [OutputType([void])]
-    param (
-        [switch]$UseDaisyUi
-    )
+    param ()
     process {
         [hashtable]$missingCompilerOptions = [ordered]@{
             <# Vite Default Settings #>
