@@ -20,38 +20,38 @@ function Install-MyTailwindCss {
             throw 'Only enable either $IsVite or $IsNextJs'
         }
 
-        npm i -D tailwindcss @tailwindcss/typography
+        [string[]]$neededDevPackages = @(
+            'tailwindcss'
+            'postcss'
+            'autoprefixer'
+            '@tailwindcss/typography'
+        )
 
         if ($IsNextJs) {
-            if ($UseDaisyUi) {
-                npm i -D daisyui@latest
-                Copy-Item -LiteralPath "$PSScriptRoot\nextjs-daisyui-tailwind.config.ts" -Destination '.\tailwind.config.ts' -Force
-            }
-            Copy-Item -LiteralPath "$PSScriptRoot\nextjs-tailwind.config.ts" -Destination '.\tailwind.config.ts' -Force
+            npm i -D @tailwindcss/typography
+            Copy-Item -LiteralPath "$PSScriptRoot\tailwind-nextjs.config.ts" -Destination '.\tailwind.config.ts' -Force
 
             git add '.\package-lock.json' '.\package.json' '.\tailwind.config.ts'
-            git commit -m 'Add Tailwind CSS'
+            git commit -m 'Add `@tailwindcss/typography`'
 
             return
         }
-
-        if ($UseDaisyUi) {
-            npm i -D daisyui@latest
-            Copy-Item -LiteralPath "$PSScriptRoot\daisyui-tailwind.config.js" -Destination '.\tailwind.config.js'
-        }
-        else {
-            Copy-Item -LiteralPath "$PSScriptRoot\tailwind.config.js" -Destination '.\tailwind.config.js'
-        }
         if ($IsVite) {
-            Copy-Item -LiteralPath "$PSScriptRoot\vite-index.css" -Destination '.\src\index.css' -Force
+            Copy-Item -LiteralPath "$PSScriptRoot\tailwind-vite.config.js" -Destination '.\tailwind.config.js' -Force
+            Copy-Item -LiteralPath "$PSScriptRoot\index-vite.css" -Destination '.\src\index.css' -Force
+
             git add '.\src\index.css'
         }
         else {
-            Copy-Item -LiteralPath "$PSScriptRoot\style.css" -Destination '.\style.css' -Force
-            git add '.\style.css'
-        }
+            Copy-Item -LiteralPath "$PSScriptRoot\tailwind.config.js" -Destination '.\tailwind.config.js' -Force
+            Copy-Item -LiteralPath "$PSScriptRoot\index.css" -Destination '.\index.css' -Force
 
-        git add '.\package-lock.json' '.\package.json' '.\tailwind.config.js'
+            git add '.\index.css'
+        }
+        Copy-Item -LiteralPath "$PSScriptRoot\postcss.config.js" -Destination '.\postcss.config.js'
+        npm i -D $neededDevPackages
+
+        git add '.\package-lock.json' '.\package.json' '.\tailwind.config.js' '.\postcss.config.js'
         git commit -m 'Add Tailwind CSS'
     }
 }
