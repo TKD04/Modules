@@ -73,6 +73,10 @@ function Add-MyPackagesToVite {
         Export-MyJSON -LiteralPath '.\package.json' -CustomObject $package
         git add '.\package.json'
         git commit -m 'Add `--open` to `dev` and `preview` npm scirpt'
+        <# Format all files by Prettier #>
+        npm run format
+        git add .
+        git commit -m 'Format all the files by Prettier'
     }
 }
 
