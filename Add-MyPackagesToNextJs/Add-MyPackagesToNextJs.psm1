@@ -26,7 +26,6 @@ function Add-MyPackagesToNextJs {
         <# TypeScript #>
         # Make tsconfig more strict
         [hashtable]$tsConfig = Import-MyJSON -LiteralPath '.\tsconfig.json' -AsHashTable
-        $tsConfig.compilerOptions.Remove('allowJs')
         $missingCompilerOptions.GetEnumerator() | ForEach-Object {
             $tsConfig.compilerOptions.Add($_.Key, $_.Value)
         }
