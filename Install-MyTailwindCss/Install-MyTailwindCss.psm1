@@ -25,6 +25,7 @@ function Install-MyTailwindCss {
             'postcss'
             'autoprefixer'
             '@tailwindcss/typography'
+            "@tailwindcss/forms"
         )
 
         if ($IsNextJs) {
