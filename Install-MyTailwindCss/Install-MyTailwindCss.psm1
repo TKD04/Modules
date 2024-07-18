@@ -25,7 +25,7 @@ function Install-MyTailwindCss {
             'postcss'
             'autoprefixer'
             '@tailwindcss/typography'
-            "@tailwindcss/forms"
+            '@tailwindcss/forms'
         )
 
         if ($IsNextJs) {
@@ -49,6 +49,8 @@ function Install-MyTailwindCss {
 
             git add '.\index.css'
         }
+        # https://tailwindcss.com/docs/optimizing-for-production
+        $neededDevPackages += 'cssnano'
         Copy-Item -LiteralPath "$PSScriptRoot\postcss.config.js" -Destination '.\postcss.config.js'
         npm i -D $neededDevPackages
 
