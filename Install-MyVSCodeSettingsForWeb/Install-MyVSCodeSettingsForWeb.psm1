@@ -36,7 +36,6 @@ function Install-MyVSCodeSettingsForWeb {
                 'davidanson.vscode-markdownlint'
                 'esbenp.prettier-vscode'
                 'orta.vscode-jest'
-                'styled-components.vscode-styled-components'
                 'bradlc.vscode-tailwindcss'
             )
         }
