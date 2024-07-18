@@ -69,6 +69,7 @@ function Install-MyESLint {
         [string[]]$neededDevPackages = @(
             'eslint'
             'eslint-plugin-import'
+            'eslint-plugin-tailwindcss'
             'eslint-config-prettier'
         )
 
@@ -188,7 +189,10 @@ function Install-MyESLint {
             }
             $eslintrc.Add('overrides', @($eslintOverridesJest))
         }
-        $eslintrc.extends += 'prettier'
+        $eslintrc.extends += @(
+            'plugin:tailwindcss/recommended'
+            'prettier'
+        )
         npm i -D $neededDevPackages
         Export-MyJSON -LiteralPath $eslintrcPath -CustomObject $eslintrc
         Add-MyNpmScript -NameToScript @{
