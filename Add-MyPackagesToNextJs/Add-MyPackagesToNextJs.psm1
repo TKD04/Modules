@@ -55,6 +55,7 @@ function Add-MyPackagesToNextJs {
         Install-MyPrettier -UseTailwindcss
         <# Tailwind CSS #>
         Install-MyTailwindCss -IsNextJs
+        Install-MyVSCodeSettingsForWeb
     }
 }
 
