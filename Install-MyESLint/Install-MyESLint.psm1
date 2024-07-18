@@ -47,6 +47,7 @@ function Install-MyESLint {
                 sourceType  = 'module'
             }
             extends        = @()
+            plugins        = @()
             ignorePatterns = @(
                 '/dist/'
             )
@@ -94,11 +95,13 @@ function Install-MyESLint {
                 'eslint-plugin-react'
                 'eslint-plugin-react-hooks'
                 'eslint-plugin-jsx-a11y'
+                'eslint-plugin-react-compiler'
             )
             $eslintrc.extends += @(
                 'airbnb'
                 'airbnb/hooks'
             )
+            $eslintrc.plugins += 'eslint-plugin-react-compiler'
         }
         else {
             # https://www.npmjs.com/package/eslint-config-airbnb-base
@@ -117,7 +120,7 @@ function Install-MyESLint {
             $eslintrc.Add('parser', '@typescript-eslint/parser')
             $eslintrc.parserOptions.Add('project', './tsconfig.eslint.json')
             $eslintrc.parserOptions.Add('tsconfigRootDir', './')
-            $eslintrc.Add('plugins', @('@typescript-eslint'))
+            $eslintrc.plugins += '@typescript-eslint'
             if ($UseReact) {
                 $eslintrc.extends += 'airbnb-typescript'
                 $eslintrc.rules.Add('react/react-in-jsx-scope', 'off')
