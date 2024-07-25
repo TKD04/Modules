@@ -19,9 +19,6 @@ function Install-MyVSCodeSettingsForWeb {
             'editor.tabSize'                             = 2
             <# HTML #>
             'editor.linkedEditing'                       = $true
-            'emmet.variables'                            = @{
-                'lang' = 'ja'
-            }
             <# TypeScript/JavaScript #>
             'javascript.updateImportsOnFileMove.enabled' = 'always'
             'typescript.updateImportsOnFileMove.enabled' = 'always'
