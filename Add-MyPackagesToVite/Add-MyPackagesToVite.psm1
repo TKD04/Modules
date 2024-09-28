@@ -52,7 +52,7 @@ function Add-MyPackagesToVite {
         # Vite uses absolute path ('/') to access public directory
         $eslintrc.rules.Add('import/no-absolute-path', 'off')
         Export-MyJSON -LiteralPath '.\.eslintrc.json' -CustomObject $eslintrc
-        git rm '.\.eslintrc.cjs'
+        git rm '.\eslint.config.js'
         git add '.\.eslintrc.json'
         git commit -m 'Make eslintrc more strict'
         <# Jest #>
