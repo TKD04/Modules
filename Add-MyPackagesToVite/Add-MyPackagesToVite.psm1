@@ -37,6 +37,10 @@ function Add-MyPackagesToVite {
         git add './tsconfig.json'
         git commit -m 'Make tsconfig more strict'
         <# ESLint #>
+        # Use old version ESLint (v8) instead of new one (v9) which installed by Vite
+        # because many packages which I use didn't support new one so far (2024-09-30)
+        npm rm @esilnt/js eslint globals typescript-eslint eslint-plugin-react-hooks
+        git rm '.\eslint.config.js'
         # Make eslintrc more strict
         Install-MyESLint -UseBrower -UseTypeScript -UseReact -UseJest
         [hashtable]$eslintrc = Import-MyJSON -LiteralPath '.\.eslintrc.json' -AsHashTable
@@ -52,7 +56,6 @@ function Add-MyPackagesToVite {
         # Vite uses absolute path ('/') to access public directory
         $eslintrc.rules.Add('import/no-absolute-path', 'off')
         Export-MyJSON -LiteralPath '.\.eslintrc.json' -CustomObject $eslintrc
-        git rm '.\eslint.config.js'
         git add '.\.eslintrc.json'
         git commit -m 'Make eslintrc more strict'
         <# Jest #>
