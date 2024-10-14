@@ -1,11 +1,16 @@
 ﻿<#
 .SYNOPSIS
 Adds some needed packages to a Vite
+
+.PARAMETER UseDaisyUi
+Whether to support daisyUI
 #>
 function Add-MyPackagesToVite {
     [CmdletBinding()]
     [OutputType([void])]
-    param ()
+    param (
+        [switch]$UseDaisyUi
+    )
     process {
         [hashtable]$missingCompilerOptions = [ordered]@{
             <# Vite Default Settings #>
@@ -63,7 +68,7 @@ function Add-MyPackagesToVite {
         <# Prettier #>
         Install-MyPrettier -UseTailwindcss
         <# Tailwind CSS #>
-        Install-MyTailwindCss -IsVite
+        Install-MyTailwindCss -IsVite -UseDaisyUi:$UseDaisyUi
         Install-MyVSCodeSettingsForWeb
         <# Rename .js .cjs for config files to work in type: module #>
         Rename-MyFileExtension -OldExtension 'js' -NewExtension 'cjs' -UseGitMv

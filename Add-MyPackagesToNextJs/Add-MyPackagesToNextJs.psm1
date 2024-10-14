@@ -1,11 +1,16 @@
 ﻿<#
 .SYNOPSIS
 Adds some needed packages to a Next.js project.
+
+.PARAMETER UseDaisyUi
+Whether to support daisyUI
 #>
 function Add-MyPackagesToNextJs {
     [CmdletBinding()]
     [OutputType([void])]
-    param ()
+    param (
+        [switch]$UseDaisyUi
+    )
     process {
         [hashtable]$missingCompilerOptions = @{
             'allowUnreachableCode'               = $false
@@ -54,7 +59,7 @@ function Add-MyPackagesToNextJs {
         <# Prettier #>
         Install-MyPrettier -UseTailwindcss
         <# Tailwind CSS #>
-        Install-MyTailwindCss -IsNextJs
+        Install-MyTailwindCss -IsNextJs -UseDaisyUi:$UseDaisyUi
         Install-MyVSCodeSettingsForWeb
     }
 }
