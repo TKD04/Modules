@@ -46,9 +46,11 @@ function Add-MyPackagesToNextJs {
         git rm '.\.eslintrc.json'
         Install-MyESLint -UseTypeScript -UseReact -UseJest -IsNextJs
         [hashtable]$eslintrc = Import-MyJSON -LiteralPath '.\.eslintrc.json' -AsHashTable
-        $eslintrc.extends += 'next/core-web-vitals'
+        # https://nextjs.org/docs/app/building-your-application/configuring/eslint#migrating-existing-config
+        npm i -D @next/eslint-plugin-next
+        $eslintrc.extends += 'plugin:@next/next/recommended'
         Export-MyJSON -LiteralPath '.\.eslintrc.json' -CustomObject $eslintrc
-        git add '.\.eslintrc.json'
+        git add '.\.eslintrc.json' '.\package.json' '.\package-lock.json'
         git commit -m 'Make eslintrc more strict'
         <# Jest #>
         Install-MyJest -UseBrowser -UseReact
