@@ -168,6 +168,10 @@ function Install-MyESLint {
                         noEmit = $true
                     }
                 }
+                # To fix error importing "nextConfig.mjs"
+                $eslintrc.rules.Add('import/extensions', 'off')
+                # To fix error importing non ts files like images
+                $eslintrc.rules.Add('import/order', 'off')
             }
             Export-MyJSON -LiteralPath $tsconfigEslintPath -CustomObject $tsconfigEslint
             git add $tsconfigEslintPath
